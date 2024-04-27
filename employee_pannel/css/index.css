@@ -1,0 +1,42 @@
+*:focus{
+    box-shadow: none !important;
+}
+.sidebar{
+    position:fixed;
+    z-index:1000;
+    left:0;
+    width:20%;
+    height:100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+}
+.page{
+    width:80%;
+    height:100vh;
+    overflow: hidden;
+ overflow-y: auto; 
+    background-color: #3dc179;
+    padding:40px;
+    margin-left: 20%;;
+}
+ul{
+    list-style: none;
+}
+.collapse-item:hover,.active{
+    border:2px solid #827070;
+    cursor: pointer;
+}
+
+.category-area::-webkit-scrollbar{
+    width:10px;
+}
+.category-area::-webkit-scrollbar-track{
+    color:#ddd;
+}
+
+.category-area::-webkit-scrollbar-thumb{
+    background-color:deeppink;
+}
+
