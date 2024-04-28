@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 
 //dynamics request
-$(document).ready(function () {
+$(document).ready(function (){
 
     var active_link = $(".active").attr("access-link");
     dynamic_request(active_link);
@@ -128,6 +128,119 @@ function dynamic_request(request_link) {
 
             });
 
+//add brand field 
+$(".add-brand-btn").click(function () {
+    var placeholder = $(".brand-input:first").attr("placeholder");
+    var input = document.createElement("INPUT");
+    input.type = "text";
+    input.className = "form-control brand-input mb-3";
+    input.placeholder = placeholder;
+    input.required = "required";
+    input.style.background = "#f9f9f9";
+    $(".brand-field-area").append(input);
+});
+//create brand
+
+$(".create-brand-btn").click(function (e) {
+    e.preventDefault();
+   var category = $(".brand-category").val();
+   if(category=="Choose category")
+   {
+    var notice = document.createElement("DIV");
+    notice.className = "alert alert-warning";
+    notice.innerHTML = "<b>please choose a category !</b>";
+    $(".brand-field-notice").html(notice);
+    setTimeout(function () {
+        $(".brand-field-notice").html("");
+        $(".brand-form").trigger('reset');
+    }, 3000);
+   }
+   else{
+    var input = [];
+    var input_length = $(".brand-input").length;
+    var i;
+    for (i = 0; i < input_length; i++) {
+        input[i] = document.getElementsByClassName("brand-input")[i].value;
+    }
+
+    var object = JSON.stringify(input);
+   // alert(input_length);
+    $.ajax({
+        type: "POST",
+        url: "php/create_brand.php",
+        data: {
+            json_data: object,
+           category:category
+        },
+        beforeSend: function () {
+            $(".brand-loader").removeClass("d-none");
+        },
+        success: function (response) {
+            $(".brand-loader").addClass("d-none");
+           // alert(response);
+            if (response.trim() == "done") {
+
+                var notice = document.createElement("DIV");
+                notice.className = "alert alert-success";
+                notice.innerHTML = "<b>Success ! </b>";
+                $(".brand-field-notice").html(notice);
+                setTimeout(function () {
+                    $(".brand-field-notice").html("");
+                    $(".brand-form").trigger('reset');
+                }, 3000);
+            } else {
+                var notice = document.createElement("DIV");
+                notice.className = "alert alert-danger";
+                notice.innerHTML = "<b>" + response + "</b>";
+                $(".brand-field-notice").html(notice);
+                setTimeout(function () {
+                    $(".brand-field-notice").html("");
+                    $(".brand-form").trigger('reset');
+                }, 3000);
+            }
+        }
+    });
+}
+});
+//display brands name
+$(document).ready(function(){
+    $(".display-brand").on("change",function(){
+
+        var selected_cat_name = $(this).val();
+        $.ajax({
+            type:"POST",
+            url:"php/display_brands.php",
+            data:{
+                category_name:selected_cat_name
+            },
+            beforeSend:function(){
+                $(".brand-loader").removeClass("d-none");
+            },
+            success:function(response){
+                $(".brand-loader").addClass("d-none");
+                console.log(JSON.parse(response));
+                var table = document.createElement("TABLE");
+                table.width="100%";
+                var json_data =JSON.parse(response);
+                table.border="1px solid red";
+                var i;
+                for(i=0;i<json_data.length;i++){
+                    var tr =document.createElement("TR");
+                    var td_cat =document.createElement("TD");
+                    var td_brands =document.createElement("TD");
+                    td_cat.innerHTML = json_data[i].category_name;
+                    td_brands.innerHTML= json_data[i].brands;
+                table.append(tr);
+                tr.append(td_cat);
+                tr.append(td_brands);
+                $(".brand-list-area").html(table);
+                
+                
+                }
+            }
+        });
+    });
+});
 
 
         }
