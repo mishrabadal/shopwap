@@ -5,9 +5,15 @@ $get_data = "SELECT * FROM brands WHERE category_name ='$category_name'" ;
 
 $response = $db->query($get_data);
 $result =[];
-while($data = $response->fetch_assoc()){
-array_push($result,$data);
+if($response->num_rows !=0)
+{
+    while($data = $response->fetch_assoc()){
+        array_push($result,$data);
+        }
+        echo json_encode($result);
 }
-echo json_encode($result);
+else{
+    echo "<b>No  brand has been created yet in this category</b>";
+}
 
 ?>

@@ -51,7 +51,10 @@ echo '</select>
 
 		}
 		echo '</select>
-  			<h5 class="my-3">BRANDS LIST</h5>
+  			<h5 class="my-3">BRANDS LIST
+			
+			<i class="fa fa-circle-o-notch fa-spin display-brand-loader close d-none"></i>
+			</h5>
   			<hr>
 			<div class="brand-list-area my-3">
 			</div>
