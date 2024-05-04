@@ -16,7 +16,14 @@ VALUES('$category','$json_data[$i]')
 ";
 
         if ($db->query($store_data)) {
+            if(mkdir("../../stocks/".$category."/".$json_data[$i]))
+            {
             $message = "done";
+            }
+
+
+
+
         } else {
             $message = "<b>unable to store data in table</b>";
         }
@@ -39,7 +46,10 @@ VALUES('$category','$json_data[$i]')
 ";
 
             if ($db->query($store_data)) {
+                if(mkdir("../../stocks/".$category."/".$json_data[$i]))
+                {
                 $message = "done";
+                }
             } else {
                 $message = "<b>unable to store data in table</b>";
             }

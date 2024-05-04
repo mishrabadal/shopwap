@@ -17,7 +17,7 @@
     height:100vh;
     overflow: hidden;
  overflow-y: auto; 
-    background-color: #3dc179;
+    background-color: #3ddc82;
     padding:40px;
     margin-left: 20%;;
 }
@@ -38,5 +38,24 @@ ul{
 
 .category-area::-webkit-scrollbar-thumb{
     background-color:deeppink;
+}
+
+.pic .col-md-2{
+  
+    position: relative;
+}
+.pic img{
+ width:80px;
+ height:100px;
+
+}
+.pic input[type="file"]{
+position: absolute;
+left:15px;
+border:2px solid red;
+top:0;
+width:80px;
+ height:100px;
+
 }
 

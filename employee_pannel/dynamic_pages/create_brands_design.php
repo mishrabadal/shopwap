@@ -12,7 +12,7 @@ while($data =$response->fetch_assoc()){
 }
 echo '<div class="row slideInDown">
   		<div class="col-md-4 py-2 bg-white rounded-lg shadow-sm">
-  			<h5 class="my-3">CREATE BRANDS<i class="fa fa-circle-o-notch fa-spin close brand-loader d-none" style="font-size:18px"></i></h5>
+  			<h5 class="my-3">CHOOSE BRANDS<i class="fa fa-circle-o-notch fa-spin close brand-loader d-none" style="font-size:18px"></i></h5>
   			<form class="brand-form">
         
 

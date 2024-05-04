@@ -16,7 +16,13 @@ for ($i=0; $i <$length ; $i++) {
     $store_data = "INSERT INTO category(category_name)VALUES('$json_data[$i]')";
     if($db->query($store_data))
     {
-      $message= "done ";
+      //$message= "done ";
+      if(mkdir("../../stocks/".$json_data[$i]))
+      {
+      $message = "done";
+      }
+
+      
     }
     else{
       $message =  "failed to insert ";
@@ -25,17 +31,6 @@ for ($i=0; $i <$length ; $i++) {
 
  echo $message;
 //custom
-
-
-
-
-
-
-
-
-
-
-
 
 }
 else{
@@ -52,7 +47,10 @@ else{
        $store_data = "INSERT INTO category(category_name)VALUES('$json_data[$i]')";
        if($db->query($store_data))
        {
-         $message =  "done ";
+        if(mkdir("../../stocks/".$json_data[$i]))
+        {
+        $message = "done";
+        }
        }
        else{
          $message = "failed to insert data ";

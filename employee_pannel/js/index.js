@@ -64,6 +64,31 @@ function dynamic_request(request_link) {
         },
         success: function (response) {
             $(".page").html(response);
+//pointmishra
+$(".create-products-form").submit(function(e){
+
+e.preventDefault();
+if($(".brands-name").val() !="choose brands")
+    {
+$.ajax({
+type:"POST",
+url : "php/create_product.php",
+data : new FormData(this),
+processData:false,
+contentType:false,
+cache:false,
+success:function(response){
+document.write(response);
+}
+
+});
+    
+}
+
+else{
+    alert("choose a brand");
+}
+});
 
             if (request_link == "create_category_design.php") {
                 category_list();

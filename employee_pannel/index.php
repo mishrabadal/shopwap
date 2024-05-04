@@ -30,8 +30,8 @@
             </button>
             <ul class="collapse stock-update-btn-menu show">
                 <li class="border-left p-2 collapse-item " access-link="create_category_design.php">create category</li>
-                <li class="border-left p-2 collapse-item active"  access-link="create_brands_design.php">create Brand</li>
-                <li class="border-left p-2 collapse-item "  access-link="create_products_design.php">create Products</li>
+                <li class="border-left p-2 collapse-item "  access-link="create_brands_design.php">create Brand</li>
+                <li class="border-left p-2 collapse-item active"  access-link="create_products_design.php">create Products</li>
             </ul>
         </div>
         <div class="page">
