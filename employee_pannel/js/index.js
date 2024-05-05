@@ -65,6 +65,7 @@ function dynamic_request(request_link) {
         success: function (response) {
             $(".page").html(response);
 //pointmishra
+//create products
 $(".create-products-form").submit(function(e){
 
 e.preventDefault();
@@ -77,8 +78,30 @@ data : new FormData(this),
 processData:false,
 contentType:false,
 cache:false,
+xhr: function(){
+    var request = new XMLHttpRequest();
+    request.upload.onprogress = function(e){
+    var percentage = Math.floor((e.loaded*100)/e.total);
+    $(".create-products-progress .progress-bar").css({
+    width: percentage+"%"
+    });
+    $(".create-products-progress .progress-bar").html(percentage+"%");
+    }
+    return request;
+    },
+    beforeSend: function(){
+    $(".create-products-progress").removeClass("d-none");
+    },
 success:function(response){
-document.write(response);
+    if(response.trim() =="success")
+        {
+       $(".create-products-progress").addClass("d-none");
+        $(".create-products-progress.progress-bar").css({width:'0%'});
+        $(".create-products-form").trigger('reset');
+        }
+        else{
+        alert(response);
+        }
 }
 
 });

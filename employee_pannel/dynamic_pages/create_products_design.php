@@ -58,9 +58,9 @@ echo '
 </div>
 <div class="row">
     <div class="col-md-9">
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-              40%
+        <div class="progress create-products-progress d-none">
+            <div class="progress-bar progress-bar-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="100" >
+           
             </div>
           </div>
     </div>
