@@ -4,7 +4,7 @@ $product_title = $_POST['title'];
 $product_description = $_POST['description'];
 $brands = $_POST['brands'];
 $dir ="";
-$message = "";
+$message = "something went wrong ! ";
 //get category name 
 $get_cat_name = "SELECT category_name FROM brands WHERE brands='$brands'";
  $response = $db->query($get_cat_name);
@@ -127,11 +127,14 @@ if($dir)
 }
 else{
 echo "Unable to store data  in products table";
+echo "Error: " . mysqli_error($db);
 }
 }
 
 else{
     echo "Unable to create products table"; 
+    echo "Error: " . mysqli_error($db);
 }
 }
+
 ?>
