@@ -50,27 +50,29 @@
 
     <form class="branding-form">
     <div class="form-group ">
-<label for="phone" class="font-weight-bold">enter brand name</label>
-<input type="text" class="form-control w-100" name="brand-name" id="phone" placeholder="shopwap"> </div>
+<label for="phone" class="font-weight-bold">enter brand name
+<i class="fa fa-edit branding-edit" style="cursor :pointer;"></i>
+</label>
+<input type="text" class="form-control w-100" name="brand-name" id="brand-name" placeholder="shopwap"> </div>
 
 <div class="form-group ">
 <label for="phone" class="font-weight-bold">Upload brand logo</label>
-<input type="file" accept="image/*"  class="form-control w-100" name="brand-logo" id="brand-logo" > </div>
+<input type="file" accept="image/*"  class="form-control w-100" name="brand-logo" id="brand-logo" required> </div>
 
 <div class="form-group ">
 <label for="phone" class="font-weight-bold">enter domain name</label>
-<input type="text" class="form-control w-100" name="domain-name" id="phone"  placeholder="www.shopwap.com" > </div>
+<input type="text" class="form-control w-100" name="domain-name" id="domain-name"  placeholder="www.shopwap.com" > </div>
 
 <div class="form-group ">
 <label for="phone" class="font-weight-bold">email</label>
-<input type="text" class="form-control w-100" name="email" id="phone" placeholder="shopwap@gmail.com"> </div>
+<input type="text" class="form-control w-100" name="email" id="email" placeholder="shopwap@gmail.com"> </div>
 <div class="form-group ">
 <label for="phone" class="font-weight-bold">social handle</label>
-<input type="text" class="form-control w-100" name="facebook-url" id="phone" placeholder="facebook page url"> <input type="text" class="form-control w-100" name="twitter-url" id="phone" placeholder="twitter page url"></div>
+<input type="text" class="form-control w-100" name="facebook-url" id="facebook-url" placeholder="facebook page url"> <input type="text" class="form-control w-100" name="twitter-url" id="twitter-url" placeholder="twitter page url"></div>
 
 <div class="form-group">
 <label for="about-us" class="font-weight-bold">Addresss</label>
-<textarea class="form-control"  name="address"></textarea>
+<textarea class="form-control"  name="address" id="address"></textarea>
 </div>
 
 
@@ -92,7 +94,7 @@
 
 <div class="form-group">
 <label for="about-us" class="font-weight-bold">terms and condition </label>
-<textarea class="form-control"  name="terms" id="cookies-policy" maxlength="5000"></textarea>
+<textarea class="form-control"  name="terms" id="terms" maxlength="5000"></textarea>
 </div>
 
 <button type="submit" class="branding-submit-btn btn btn-primary py-2">Submit your information</button>
@@ -140,7 +142,7 @@ $("#cookies-policy").on("input", function(){
 });
 
 
-// point solution 
+
 // branding detail
 $(document).ready(function(){
 $(".branding-form").submit(function(e){
@@ -148,7 +150,14 @@ e.preventDefault();
 
 
 var file = document.querySelector("#brand-logo"); 
-var file_size = file.files[0].size; 
+var file_size;
+if(file.value == "")
+{
+file_size = 0;
+}
+else{
+file_size = file.files[0].size;
+}
 if(200000>file_size){
 $.ajax({
 type: "POST",
@@ -166,6 +175,38 @@ document.write(response);
 else{
     alert("upload pic less than 200kb");
 }
+});
+});
+
+
+// point solution 
+//
+$(document).ready(function(){
+$.ajax({
+type: "POST",
+url: "php/check_branding_table.php",
+success: function (response)
+{
+var all_data = JSON.parse(response.trim());
+
+    $("#brand-name").val(all_data[0].brand_name);
+$("#domain-name").val(all_data[0].domain_name);
+$("#email").val(all_data[0].email);
+$("#facebook-url").val(all_data[0].facebook_url);
+$("#twitter-url").val(all_data[0].twitter_url);
+$("#address").val(all_data[0].address);
+$("#phone").val(all_data[0].phone);
+$("#about-us").val(all_data[0].about_us);
+$("#privacy-policy").val(all_data[0].privacy_policy);
+$("#cookies-policy").val(all_data[0].cookies_policy);
+$("#terms").val(all_data[0].terms_policy);
+$(".branding-form input,.branding-form textarea,.branding-form button").prop("disabled", true);
+$(".branding-edit").click(function(){
+    $(".branding-form input,.branding-form textarea,.branding-form button").prop("disabled", false);
+    $("#brand-logo").removeAttr("required");
+});
+}
+
 });
 });
 </script>
