@@ -49,7 +49,7 @@ if ($response) {
     }
 
     else{
-        $update_data = "UPDATE branding SET brand_name='$brand_name', brand_logo='$logo', email='$email', domain_name='$domain_name',facebook_url='$facebook_url', twitter_url='$twitter_url', address= '$address' ,phone='$phone', about_us='$about_us', privacy_policy='$privacy_policy', cookies_policy='$cookies_policy', terms_policy='$terms'";
+        $update_data = "UPDATE branding SET brand_name='$brand_name', brand_logo='$logo', email='$email', domain_name='$domain_name',facebook_url='$facebook_url', twitter_url='$twitter_url', address= '$address',phone='$phone', about_us='$about_us', privacy_policy='$privacy_policy', cookies_policy='$cookies_policy', terms_policy='$terms'";
 $response = $db->query($update_data);
 if($response)
 {
@@ -72,7 +72,8 @@ email VARCHAR(100),
  facebook_url VARCHAR(255),
 twitter_url VARCHAR(255), 
 address VARCHAR(100),
-phone INT(12), about_us MEDIUMTEXT, 
+phone VARCHAR(100), 
+about_us MEDIUMTEXT, 
  privacy_policy MEDIUMTEXT,
  cookies_policy MEDIUMTEXT, 
 terms_policy MEDIUMTEXT, 

@@ -27,7 +27,15 @@ require_once("./common_files/databases/databases.php");
 <?php
 include_once("assest/nav.php");
 ?>
+<div class="container bg-white p-5 shadow-lg border" >
+ <h2>PRIVACY POLICY</h2>
+<hr>
+<?php
 
+echo $branding_result['privacy_policy'];
+
+?>
+</div>
 <?php
 include_once("assest/footer.php");
 ?>
