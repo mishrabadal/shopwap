@@ -23,190 +23,85 @@
 <body>
     <div class="container-fluid">
         <div class="sidebar">
-        <button class="btn  w-100 text-left stock-update-btn w-100">
+        <button class="btn  w-100 text-left collapse-item w-100 active" access-link="branding_design.php">
                 <i class="fa fa-image"></i>
                Branding details
                 <i class="fa fa-angle-down close mt-2 "></i>
             </button>
-
-            <button class="btn btn-danger w-100 text-left stock-update-btn w-100">
+            <button class="btn w-100 text-left homepage-design-btn" style="font-size:20px"> <i class="fa fa-home"></i>
+Homepage design <i class="fa fa-angle-down close mt-2 "></i>
+</button>
+<ul class="collapse homepage-design-collapse">
+<li class="border-left p-2 collapse-item" access-link="header_showcase_design.php" >Header showcase</li>
+<li class="border-left p-2 collapse-item" access-link="category_showcase_design.php"> Category showcase</li>
+</ul>
+            <button class="btn  w-100 text-left stock-update-btn w-100">
                 <i class="fa fa-shopping-cart"></i>
                 Stock update
                 <i class="fa fa-angle-down close mt-2 "></i>
             </button>
-            <ul class="collapse stock-update-btn-menu show">
+            <ul class="collapse stock-update-btn-menu ">
                 <li class="border-left p-2 collapse-item " access-link="create_category_design.php">create category</li>
                 <li class="border-left p-2 collapse-item "  access-link="create_brands_design.php">create Brand</li>
-                <li class="border-left p-2 collapse-item active"  access-link="create_products_design.php">create Products</li>
+                <li class="border-left p-2 collapse-item "  access-link="create_products_design.php">create Products</li>
             </ul>
         </div>
         <div class="page">
     
-        <div class="row">
-<div class="col-md-2"></div>
-<div class="col-md-8 p-4 bg-white rounded-1g shadow-sm">
-    
-
-
-    <form class="branding-form">
-    <div class="form-group ">
-<label for="phone" class="font-weight-bold">enter brand name
-<i class="fa fa-edit branding-edit" style="cursor :pointer;"></i>
-</label>
-<input type="text" class="form-control w-100" name="brand-name" id="brand-name" placeholder="shopwap"> </div>
-
-<div class="form-group ">
-<label for="phone" class="font-weight-bold">Upload brand logo</label>
-<input type="file" accept="image/*"  class="form-control w-100" name="brand-logo" id="brand-logo" required> </div>
-
-<div class="form-group ">
-<label for="phone" class="font-weight-bold">enter domain name</label>
-<input type="text" class="form-control w-100" name="domain-name" id="domain-name"  placeholder="www.shopwap.com" > </div>
-
-<div class="form-group ">
-<label for="phone" class="font-weight-bold">email</label>
-<input type="text" class="form-control w-100" name="email" id="email" placeholder="shopwap@gmail.com"> </div>
-<div class="form-group ">
-<label for="phone" class="font-weight-bold">social handle</label>
-<input type="text" class="form-control w-100" name="facebook-url" id="facebook-url" placeholder="facebook page url"> <input type="text" class="form-control w-100" name="twitter-url" id="twitter-url" placeholder="twitter page url"></div>
-
+<div class="row">
+<div class="col-md-4 p-4 bg-white rounded-1g shadow-sm">
+<form class="header-showcase-form">
 <div class="form-group">
-<label for="about-us" class="font-weight-bold">Addresss</label>
-<textarea class="form-control"  name="address" id="address"></textarea>
-</div>
-
-
-<div class="form-group ">
-<label for="phone" class="font-weight-bold">Phone</label>
-<input type="text" class="form-control w-100" name="phone" id="phone" placeholder="1800 1200 4005"> </div>
-<div class="form-group">
-<label for="about-us" class="font-weight-bold">About us <small class="about-us-count"> 0 </small><small>/ 5000</small></label>
-<textarea class="form-control"  name="about-us" maxlength="5000" id="about-us"></textarea>
+<label for="title-image">Title image</label>
+<input type="file" accept="image/*" name="title-image" id="title-image" class= "form-control">
 </div>
 <div class="form-group">
-<label for="about-us" class="font-weight-bold">privacy policy <small class="privacy-count"> 0 </small><small>/ 5000</small> </label>
-<textarea class="form-control"  name="privacy-policy" id="privacy-policy" maxlength="5000"></textarea>
+<label for="title-text">Title text</label>
+<textarea class="form-control" rows="1" id="title-text" name="title-text"></textarea>
 </div>
 <div class="form-group">
-<label for="about-us" class="font-weight-bold">cookies policy <small class="cookies-count"> 0 </small><small>/ 5000</small> </label>
-<textarea class="form-control"  name="cookies-policy" id="cookies-policy" maxlength="5000"></textarea>
+<label for="subtitle-text">Subtitle text</label>
+<textarea class="form-control" rows="5" id="subtitle-text" name="subtitle-text"></textarea>
 </div>
-
 <div class="form-group">
-<label for="about-us" class="font-weight-bold">terms and condition </label>
-<textarea class="form-control"  name="terms" id="terms" maxlength="5000"></textarea>
+<button class="btn btn-primary py-2" type="submit">Add showcase</button>
 </div>
-
-<button type="submit" class="branding-submit-btn btn btn-primary py-2">Submit your information</button>
-
 </form>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-7 p-4 bg-white rounded-lg shadow-sm position-relative showcase-preview">
 
-
-
+<h1 class="showcase-title target ">TITLE</h1>
+<h4 class="showcase-subtitle target">SUBTITLE</h4>
+<div class="showcase-formating">
+<input type="color" class="color-selector" name="color-selector">
+</div>
+</div>
+</div>
 
 </div>
-<div class="col-md-2"></div>
-</div>
-</div>
 
 
 
-        </div>
-    </div>
+ </div>
+    
 </body>
-<!-- textarea length count -->
+
 <script>
-$(document).ready(function(){
-$("#about-us").on("input", function(){ 
-    var length = $(this).val().length;
- $(".about-us-count").html(length); 
-
-});
-});
 
 
 $(document).ready(function(){
-$("#privacy-policy").on("input", function(){
-var length = $(this).val().length;
-$(".privacy-count").html(length);
-});
-});
-
-
-$(document).ready(function(){
-$("#cookies-policy").on("input", function(){
-     var length = $(this).val().length;
-      $(".cookies-count").html(length); 
-
-});
-});
-
-
-
-// branding detail
-$(document).ready(function(){
-$(".branding-form").submit(function(e){
-e.preventDefault();
-
-
-var file = document.querySelector("#brand-logo"); 
-var file_size;
-if(file.value == "")
-{
-file_size = 0;
-}
-else{
-file_size = file.files[0].size;
-}
-if(200000>file_size){
-$.ajax({
-type: "POST",
-url: "php/branding.php",
-data: new FormData(this),
-processData: false,
-contentType: false,
-cache: false,
-success: function(response)
-{
-document.write(response);
-}
-});
-}
-else{
-    alert("upload pic less than 200kb");
-}
-});
-});
-
-
-// point solution 
-//
-$(document).ready(function(){
-$.ajax({
-type: "POST",
-url: "php/check_branding_table.php",
-success: function (response)
-{
-var all_data = JSON.parse(response.trim());
-
-    $("#brand-name").val(all_data[0].brand_name);
-$("#domain-name").val(all_data[0].domain_name);
-$("#email").val(all_data[0].email);
-$("#facebook-url").val(all_data[0].facebook_url);
-$("#twitter-url").val(all_data[0].twitter_url);
-$("#address").val(all_data[0].address);
-$("#phone").val(all_data[0].phone);
-$("#about-us").val(all_data[0].about_us);
-$("#privacy-policy").val(all_data[0].privacy_policy);
-$("#cookies-policy").val(all_data[0].cookies_policy);
-$("#terms").val(all_data[0].terms_policy);
-$(".branding-form input,.branding-form textarea,.branding-form button").prop("disabled", true);
-$(".branding-edit").click(function(){
-    $(".branding-form input,.branding-form textarea,.branding-form button").prop("disabled", false);
-    $("#brand-logo").removeAttr("required");
-});
-}
-
+$(".target").click(function(event) {
+var element = event.target;
+var in_number = $(element).index();
+sessionStorage.setItem("color_in_number", in_number);
+ });
+$(".color-selector").on("change", function(){
+var color = this.value;
+var in_number = Number(sessionStorage.getItem("color_in_number"));
+var element = document.getElementsByClassName("target") [in_number];
+element.style.color = color;
+sessionStorage.removeItem("color_in_number");
 });
 });
 </script>
