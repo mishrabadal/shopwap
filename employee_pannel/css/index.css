@@ -68,3 +68,14 @@ width:80px;
     background-color:rgb(0, 0, 0);
     
     }
+
+    .target::selection{
+        background-color: inherit;
+    }
+    .target{
+        position: absolute;
+        z-index: 2;
+    }
+    .showcase-subtitle{
+        top:80px;
+    }
