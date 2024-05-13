@@ -65,6 +65,46 @@ Homepage design <i class="fa fa-angle-down close mt-2 "></i>
 </label>
 <textarea class="form-control" rows="5" id="subtitle-text" name="subtitle-text" maxlength="100"></textarea>
 </div>
+
+<div class="form-group">
+<label for="create-button">Create buttons</label>
+<div id="create-button" class="input-group mb-2">
+<input type="url" name="btn-url" class="form-control btn-url" placeholder="https://google.com">
+<input type="text" name="btn-name" class="form-control btn-name" placeholder="Button 1">
+</div>
+</div>
+<div class="input-group mb-2">
+<div class="input-group-prepend">
+<span class="input-group-text">BG COLOR</span>
+</div>
+<input type="color" name="btn-bgcolor" class="form-control btn-bgcolor">
+<div class="input-group-prepend">
+<span class="input-group-text">TEXT COLOR</span>
+</div>
+<input type="color" name="btn-textcolor" class="form-control btn-textcolor">
+</div>
+<div class="input-group mb-2">
+<div class="input-group-prepend">
+<span class="input-group-text">SIZE</span>
+</div>
+<select class="form-control btn-size">
+<option value="16px">small</option>
+<option value="20px">medium</option>
+<option value="24px">large</option>
+</select>
+<div class="input-group-append">
+<span class="input-group-text bg-danger add-btn text-light" style="
+cursor: pointer">Add</span>
+</div>
+</div>
+
+
+
+
+
+
+
+
 <div class="form-group">
 <button class="btn btn-primary py-2" type="submit">Add showcase</button>
 </div>
@@ -76,6 +116,11 @@ Homepage design <i class="fa fa-angle-down close mt-2 "></i>
 <div class="title-box border border-success">
 <h1 class="showcase-title target ">TITLE</h1>
 <h4 class="showcase-subtitle target">SUBTITLE</h4>
+<div class="title-buttons my-3">
+
+
+</div>
+
 </div>
 <div class="showcase-formating d-flex justify-content-around align-items-center" >
 
@@ -296,7 +341,8 @@ subtitle_color : subtitle_color,
 h_align: h_align,
 v_align: v_align,
 title_text: title.innerHTML,
-subtitle_text: subtitle.innerHTML
+subtitle_text: subtitle.innerHTML,
+buttons : $(".title-buttons").html().trim()
 };
 var formdata = new FormData();
 formdata.append("file_data",file);
@@ -340,6 +386,35 @@ alignItems : align_value
 });
 });
 
+//add button in showcase
 
+$(document).ready(function(){
+$(".add-btn").click(function(){
+var button = document.createElement("BUTTON");
+button.className = "btn mr-2";
+var a = document.createElement("A");
+a.href = $(".btn-url").val();
+a.innerHTML = $(".btn-name").val();
+a.style.color = $(".btn-textcolor").val();
+a.style.fontSize = $(".btn-size").val();
+button.style.backgroundColor = $(".btn-bgcolor").val();
+button.append(a);
+// $(".title-buttons").append(button);
+
+var title_buttons = document.querySelector(".title-buttons");
+var title_child = title_buttons.getElementsByTagName("BUTTON");
+var button_length = title_child.length;
+
+if(button_length == 0 || button_length == 1)
+{
+$(".title-buttons").append(button);
+
+}
+else{
+alert("Only two buttons are allowed");
+}
+
+});
+ });
 </script>
 </html>
