@@ -72,10 +72,11 @@ width:80px;
     .target::selection{
         background-color: inherit;
     }
-    .target{
-        position: absolute;
+    .title-box{
+        position: relative;
+        
         z-index: 2;
     }
     .showcase-subtitle{
-        top:80px;
+        /* top:80px; */
     }

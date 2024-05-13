@@ -15,7 +15,7 @@
     <script src="../common_files/js/bootstrap.bundle.min.js"></script>
     <script src="../common_files/js/popper.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/iindex.js"></script>
+    <script src="js/iIndex.js"></script>
 
 
 </head>
@@ -71,12 +71,14 @@ Homepage design <i class="fa fa-angle-down close mt-2 "></i>
 </form>
 </div>
 <div class="col-md-1"></div>
-<div class="col-md-7 p-4 bg-white rounded-lg shadow-sm position-relative showcase-preview">
+<div class="col-md-7 p-4 bg-white rounded-lg shadow-sm position-relative showcase-preview d-flex">
 
+<div class="title-box border border-success">
 <h1 class="showcase-title target ">TITLE</h1>
 <h4 class="showcase-subtitle target">SUBTITLE</h4>
+</div>
 <div class="showcase-formating d-flex justify-content-around align-items-center" >
-<!-- <input type="color" class="color-selector" name="color-selector"> -->
+
 <div class="btn-group">
 <button class="btn btn-light">Color</button>
 <button class="btn btn-light">
@@ -87,20 +89,21 @@ Homepage design <i class="fa fa-angle-down close mt-2 "></i>
 <div class="btn-group">
 <button class="btn btn-light">Font size</button>
 <button class="btn btn-light">
-<input type="number" class="font-size" name="font-size">
+<input type="range" min="100" max="500" class="font-size" name="font-size">
 </button>
 </div>
-<div class="btn-group">
-<button class="btn btn-light">Align</button>
-<button class="btn btn-light">
-<i class="fa fa-align-left"></i>
+
+<button class="btn btn-light dropdown-toggle" data-toggle="dropdown"> <span>Alignment</span>
+<div class="dropdown-menu">
+<span class="dropdown-item alignment" align-position="h" align-value=" flex-start">LEFT</span>
+<span class="dropdown-item alignment" align-position="h" align-value=" center">CENTER</span>
+<span class="dropdown-item alignment" align-position="h" align-value=" flex-end">RIGHT</span>
+<span class="dropdown-item alignment" align-position="v" align-value=" flex-start">TOP</span>
+<span class="dropdown-item alignment" align-position="v" align-value=" center">V-CENTER</span>
+<span class="dropdown-item alignment" align-position="v" align-value=" flex-end">BOTTOM</span>
+</div>
 </button>
-<button class="btn btn-light">
-<i class="fa fa-align-center"></i>
-</button>
-<button class="btn btn-light">
-<i class="fa fa-align-left"></i>
-</button>
+
 </div>
 
 </div>
@@ -162,8 +165,17 @@ var color = this.value;
 var in_number = Number(sessionStorage.getItem("color_in_number"));
 var element = document.getElementsByClassName("target") [in_number];
 element.style.color = color;
-sessionStorage.removeItem("color_in_number");
 });
+
+$(".font-size").on("input", function(){
+var size = this.value;
+var in_number = Number(sessionStorage.getItem("color_in_number"));
+var element = document.getElementsByClassName("target") [in_number];
+element.style.fontSize = size+"%";
+});
+
+
+
 });
 
 
@@ -220,20 +232,114 @@ $(".subtitle-limit").html(length);
 
 //add show case
 $(document).ready(function(){
-    $(".showcase-form").submit(function(e){ e.preventDefault();
+    $(".showcase-form").submit(function(e){
+     e.preventDefault();
+     var title = document.querySelector(".showcase-title");
+var subtitle = document.querySelector(".showcase-subtitle");
+var file =document.querySelector("#title-image").files[0];
+var title_size = "";
+var title_color = "";
+
+if(title.style.fontSize == "")
+{
+title_size = "300%";
+}
+else{
+title_size = title.style.fontSize;
+}
+if(title.style.color == "")
+{
+title_color = "black";
+}
+else{ title_color = title.style.color;
+} 
+var subtitle_size = "";
+var subtitle_color = "";
+if(subtitle.style.fontSize == "")
+{
+subtitle_size = "200%";
+}
+else{
+subtitle_size = subtitle.style.fontSize;
+}
+if(subtitle.style.color == "")
+{
+subtitle_color = "black";
+}
+else{
+    subtitle_color  = subtitle.style.color;
+}
+var flex_box = document.querySelector(".showcase-preview");
+var h_align = "";
+var v_align = "";
+if(flex_box.style.justifyContent == "")
+{
+h_align = "flex-start";
+}
+else{
+h_align = flex_box.style.justifyContent;
+}
+if(flex_box.style.alignItems == "")
+{
+v_align = "flex-start";
+}
+else{
+v_align = flex_box.style.alignItems;
+}
+
+
+var css_data = {
+title_size: title_size,
+title_color: title_color,
+subtitle_size: subtitle_size,
+subtitle_color : subtitle_color,
+h_align: h_align,
+v_align: v_align,
+title_text: title.innerHTML,
+subtitle_text: subtitle.innerHTML
+};
+var formdata = new FormData();
+formdata.append("file_data",file);
+formdata.append("css_data",JSON.stringify(css_data));
+
+console.log(css_data);
 $.ajax({
 type: "POST",
 url: "php/header_showcase.php",
-data: new FormData(this),
+data: formdata,
 processData: false,
 contentType: false,
 cache: false,
 success: function(response){
-    alert(response);
+    document.write(response);
 
 }
 });
 });
 });
+
+// aligment
+$(document).ready(function(){
+$(".alignment").each(function(){
+$(this).click(function(){
+var align_position = $(this).attr("align-position");
+var align_value = $(this).attr("align-value");
+if(align_position == "h")
+{
+$(".showcase-preview").css({
+justifyContent : align_value
+});
+}
+else if(align_position == "v")
+{
+$(".showcase-preview").css({
+alignItems : align_value
+});
+}
+});
+});
+});
+
+
 </script>
 </html>
