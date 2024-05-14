@@ -107,13 +107,14 @@ cursor: pointer">Add</span>
 
 <div class="form-group">
 <button class="btn btn-primary py-2" type="submit">Add showcase</button>
+<button class="btn btn-primary py-2 real-preview-btn" type="button" >Real preview</button>
 </div>
 </form>
 </div>
 <div class="col-md-1"></div>
-<div class="col-md-7 p-4 bg-white rounded-lg shadow-sm position-relative showcase-preview d-flex">
+<div class="col-md-7 p-4 bg-white rounded-lg shadow-sm position-relative showcase-preview d-flex" style="height:340px">
 
-<div class="title-box border border-success">
+<div class="title-box " >
 <h1 class="showcase-title target ">TITLE</h1>
 <h4 class="showcase-subtitle target">SUBTITLE</h4>
 <div class="title-buttons my-3">
@@ -357,7 +358,7 @@ processData: false,
 contentType: false,
 cache: false,
 success: function(response){
-    document.write(response);
+    alert(response);
 
 }
 });
@@ -416,5 +417,53 @@ alert("Only two buttons are allowed");
 
 });
  });
+
+//preview page coding
+ $(document).ready(function(){
+$(".real-preview-btn").click(function(e){
+e.preventDefault();
+var file = document.querySelector("#title-image").files[0];
+var formdata = new FormData();
+formdata.append("photo", file);
+var flex_box = document.querySelector(".showcase-preview");
+var h_align = "";
+var v_align = "";
+if(flex_box.style.justifyContent == "")
+{
+h_align = "flex-start";
+}
+else{
+h_align = flex_box.style.justifyContent;
+}
+if(flex_box.style.alignItems == "")
+{
+v_align = "flex-start";
+}
+else{
+v_align = flex_box.style.alignItems;
+}
+var array = [$(".title-box").html().trim(),h_align,v_align];
+formdata.append("data", JSON.stringify(array));
+$.ajax({
+type: "POST",
+url: "php/preview.php",
+data :formdata,
+processData: false,
+contentType: false,
+cache: false,
+success: function (response)
+{
+    var page =window.open("about:blank"); 
+page.document.open();
+page.document.write(response);
+page.document.close();
+
+}
+});
+});
+});
+</script>
+</body>
+</html>
 </script>
 </html>

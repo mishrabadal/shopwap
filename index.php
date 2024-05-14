@@ -19,7 +19,11 @@ require_once("./common_files/databases/databases.php");
     <link rel="stylesheet" href="css/index.css">
    <!-- <script src="js/index.js"></script> -->
 
-
+<style>
+    .carousel-caption{
+        line-height: 80px;
+    }
+</style>
 </head>
 
 <body>
@@ -27,11 +31,57 @@ require_once("./common_files/databases/databases.php");
 <?php
 include_once("assest/nav.php");
 ?>
+<div class="container-fluid p-0">
+<div class="carousel slide" data-ride="carousel" data-interval="2000">
+<div class="carousel-inner">
 
+<?php
+$showcase = "SELECT * FROM header_showcase";
+$response = $db->query($showcase);
+if($response)
+{
+echo "";
+while($data = $response->fetch_assoc())
+{
+    $h_align = $data['h_align'];
+    $text_align = "";
+if($h_align == "center")
+{ $text_align = "text-center";
+}
+else{ 
+    $text_align = "text-left";
+}
+    $v_align = $data['v_align'];
+    $title_color = $data['title_color'];
+    $title_size = $data['title_size'];
+    $subtitle_color = $data['subtitle_color']; 
+    $subtitle_size = $data['subtitle_size'];
+    echo "<div class='carousel-item carousel-item-control'>";
+    $image = "data:image/png;base64,".base64_encode($data['title_image']);
+    echo "<img src='".$image."' class='w-100'>";
+    echo "<div class='carousel-caption ".$text_align."d-flex h-100' style='justify-content:" .$h_align."; align-items:".$v_align."'>";
+    echo "<div>";
+    echo "<h1 style='color:".$title_color."; font-size:".$title_size."'>".$data['title_text']."</h1>";
+    echo "<h4 style='color:".$subtitle_color."; font-size:".$subtitle_size."'> ".$data['subtitle_text']."</h4>";
+    echo $data['buttons'];
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+}
+}
+?>
+</div>
+</div>
+</div>
 <?php
 include_once("assest/footer.php");
 ?>
-
+<script>
+$(document).ready(function(){
+     var carousel_item = document.querySelector(".carousel-item-control"); 
+     $(carousel_item).addClass("active"); I
+});
+</script>
 </body>
 
 </html>
