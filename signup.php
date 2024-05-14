@@ -37,32 +37,49 @@ include_once("assest/nav.php");
 <div class="form-group">
 <label for="firstname">Firstname<sup class="text-danger">*</sup></label>
 <input type="text" name="firstname" id="firstname" placeholder="
-Mr raj" required="required" class="form-control bg-light">
+Mr raj" required="required" class="form-control bg-light" value="badal">
 </div>
 <div class="form-group">
 <label for="lastname">lastname<sup class="text-danger">*</sup></label>
 <input type="text" name="lastname" id="lastname" placeholder="
-Mr raj" required="required" class="form-control bg-light">
+Mr raj" required="required" class="form-control bg-light"  value="kumar">
 </div>
 <div class="form-group">
 <label for="email">email<sup class="text-danger">*</sup></label>
 <input type="email" name="email" id="email" placeholder="
-a@gmail.com" required="required" class="form-control bg-light">
+a@gmail.com" required="required" class="form-control bg-light"  value="badal@gmail.com">
 </div>
 
  <div class="form-group">
 <label for="Mobile">Mobile<sup class="text-danger">*</sup></label>
- <input type="number" name="Mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light">
+ <input  value="8520741963" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light">
 </div>
 <div class="form-group">
 <label for="password">Password<sup class="text-danger">*</sup></label>
-<input type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
+<input  value="1234" type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
 </div>
 
 <div class="form-group">
-<button class="btn btn-primary shadow-sm py-2" type="submit"> Register now</button>
+<button class="btn btn-primary shadow-sm py-2 register-btn" type="submit"> Register now</button>
 </div>
 </form>
+
+
+<form class="d-none otp-form">
+
+<div class="form-group">
+<div class="btn-group border shadow-sm">
+<button class="btn btn-light" type="button">
+<input type="number" name="otp" placeholder=" 123456" class="form-control">
+</button>
+<button class="btn btn-light verify-btn" type="button">VERIFY</ button>
+<button class="btn btn-light resend-btn" type="button">resend otp</button>
+</div>
+</div>
+</form>
+
+
+
 
 
 </div>
@@ -74,6 +91,29 @@ a@gmail.com" required="required" class="form-control bg-light">
 include_once("assest/footer.php");
 ?>
 
+
+<script>
+$(document).ready(function(){
+$(".signup-form").submit(function(e){ e.preventDefault();
+
+$.ajax({
+type: "POST",
+url: "pages/php/register.php",
+data: new FormData (this),
+processData: false,
+contentType: false,
+cache: false,
+beforeSend: function(){
+$(".register-btn").html("Please wait...");
+},
+success: function (response)
+{
+document.write(response)
+}
+});
+});
+});
+</script>
 </body>
 
 </html>
