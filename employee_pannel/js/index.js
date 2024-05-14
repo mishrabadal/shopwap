@@ -68,6 +68,11 @@ function dynamic_request(request_link) {
         },
         success: function (response) {
             $(".page").html(response);
+
+
+            if(request_link =="header_showcase_design.php"){
+                header_showcase();
+            }            
 //pointmishra
 if(request_link =="branding_design.php"){
     branding_information();
@@ -659,4 +664,280 @@ $(document).ready(function(){
     });
     });
 
+}
+
+//header showcase
+function header_showcase() {
+
+
+
+    $(document).ready(function() {
+        $(".target").each(function() {
+            $(".target").click(function(event) {
+                var element = event.target;
+                var in_number = $(element).index();
+                sessionStorage.setItem("color_in_number", in_number);
+
+                var i;
+                for (i = 0; i < $(".target").length; i++) {
+                    $(".target").css({
+                        border: "",
+                        boxShadow: "",
+                        padding: "",
+                        width: ""
+                    });
+                    $(this).css({
+                        border: "5px solid red",
+                        boxShadow: "0px 0px 3px grey",
+                        padding: "2px",
+                        width: "fit-content"
+                    });
+                }
+                $(this).on("dblclick", function() {
+                    var i;
+                    for (i = 0; i < $(".target").length; i++) {
+                        $(".target").css({
+                            border: "",
+                            boxShadow: "",
+                            padding: "",
+                            width: ""
+                        });
+                    }
+                });
+
+            });
+        });
+
+
+        $(".color-selector").on("change", function() {
+            var color = this.value;
+            var in_number = Number(sessionStorage.getItem("color_in_number"));
+            var element = document.getElementsByClassName("target")[in_number];
+            element.style.color = color;
+        });
+
+        $(".font-size").on("input", function() {
+            var size = this.value;
+            var in_number = Number(sessionStorage.getItem("color_in_number"));
+            var element = document.getElementsByClassName("target")[in_number];
+            element.style.fontSize = size + "%";
+        });
+
+
+
+    });
+
+
+    //title image upload
+    $(document).ready(function() {
+        $("#title-image").on("change", function() {
+            var file = this.files[0];
+            if (file.size < 200000) {
+                var url = URL.createObjectURL(file);
+                var image = new Image();
+                image.src = url;
+                image.onload = function() {
+                    var o_width = image.width;
+                    var o_height = image.height;
+                    if (o_width == 1920 && o_height == 978) {
+
+                        image.style.width = "100%";
+                        image.style.position = "absolute";
+                        image.style.top = "0";
+                        image.style.left = "0";
+                        $(".showcase-preview").append(image);
+                    } else {
+                        alert("Please upload 1920*978px image");
+                    }
+                }
+            } else {
+                alert("Plaese upload leas than 200kb");
+            }
+        });
+    });
+
+
+    //taxtarea max length
+    $(document).ready(function() {
+        $("#title-text").on("input", function() {
+            var length = this.value.length;
+            $(".showcase-title").html(this.value);
+            $(".title-limit").html(length);
+        });
+    });
+    $(document).ready(function() {
+        $("#subtitle-text").on("input", function() {
+            var length = this.value.length;
+            $(".showcase-subtitle").html(this.value);
+            $(".subtitle-limit").html(length);
+        });
+
+    });
+
+
+    //add show case
+    $(document).ready(function() {
+        $(".showcase-form").submit(function(e) {
+            e.preventDefault();
+            var title = document.querySelector(".showcase-title");
+            var subtitle = document.querySelector(".showcase-subtitle");
+            var file = document.querySelector("#title-image").files[0];
+            var title_size = "";
+            var title_color = "";
+
+            if (title.style.fontSize == "") {
+                title_size = "300%";
+            } else {
+                title_size = title.style.fontSize;
+            }
+            if (title.style.color == "") {
+                title_color = "black";
+            } else {
+                title_color = title.style.color;
+            }
+            var subtitle_size = "";
+            var subtitle_color = "";
+            if (subtitle.style.fontSize == "") {
+                subtitle_size = "200%";
+            } else {
+                subtitle_size = subtitle.style.fontSize;
+            }
+            if (subtitle.style.color == "") {
+                subtitle_color = "black";
+            } else {
+                subtitle_color = subtitle.style.color;
+            }
+            var flex_box = document.querySelector(".showcase-preview");
+            var h_align = "";
+            var v_align = "";
+            if (flex_box.style.justifyContent == "") {
+                h_align = "flex-start";
+            } else {
+                h_align = flex_box.style.justifyContent;
+            }
+            if (flex_box.style.alignItems == "") {
+                v_align = "flex-start";
+            } else {
+                v_align = flex_box.style.alignItems;
+            }
+
+
+            var css_data = {
+                title_size: title_size,
+                title_color: title_color,
+                subtitle_size: subtitle_size,
+                subtitle_color: subtitle_color,
+                h_align: h_align,
+                v_align: v_align,
+                title_text: title.innerHTML,
+                subtitle_text: subtitle.innerHTML,
+                buttons: $(".title-buttons").html().trim()
+            };
+            var formdata = new FormData();
+            formdata.append("file_data", file);
+            formdata.append("css_data", JSON.stringify(css_data));
+
+            console.log(css_data);
+            $.ajax({
+                type: "POST",
+                url: "php/header_showcase.php",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function(response) {
+                    alert(response);
+
+                }
+            });
+        });
+    });
+
+    // aligment
+    $(document).ready(function() {
+        $(".alignment").each(function() {
+            $(this).click(function() {
+                var align_position = $(this).attr("align-position");
+                var align_value = $(this).attr("align-value");
+                if (align_position == "h") {
+                    $(".showcase-preview").css({
+                        justifyContent: align_value
+                    });
+                } else if (align_position == "v") {
+                    $(".showcase-preview").css({
+                        alignItems: align_value
+                    });
+                }
+            });
+        });
+    });
+
+    //add button in showcase
+
+    $(document).ready(function() {
+        $(".add-btn").click(function() {
+            var button = document.createElement("BUTTON");
+            button.className = "btn mr-2";
+            var a = document.createElement("A");
+            a.href = $(".btn-url").val();
+            a.innerHTML = $(".btn-name").val();
+            a.style.color = $(".btn-textcolor").val();
+            a.style.fontSize = $(".btn-size").val();
+            button.style.backgroundColor = $(".btn-bgcolor").val();
+            button.append(a);
+            // $(".title-buttons").append(button);
+
+            var title_buttons = document.querySelector(".title-buttons");
+            var title_child = title_buttons.getElementsByTagName("BUTTON");
+            var button_length = title_child.length;
+
+            if (button_length == 0 || button_length == 1) {
+                $(".title-buttons").append(button);
+
+            } else {
+                alert("Only two buttons are allowed");
+            }
+
+        });
+    });
+
+    //preview page coding
+    $(document).ready(function() {
+        $(".real-preview-btn").click(function(e) {
+            e.preventDefault();
+            var file = document.querySelector("#title-image").files[0];
+            var formdata = new FormData();
+            formdata.append("photo", file);
+            var flex_box = document.querySelector(".showcase-preview");
+            var h_align = "";
+            var v_align = "";
+            if (flex_box.style.justifyContent == "") {
+                h_align = "flex-start";
+            } else {
+                h_align = flex_box.style.justifyContent;
+            }
+            if (flex_box.style.alignItems == "") {
+                v_align = "flex-start";
+            } else {
+                v_align = flex_box.style.alignItems;
+            }
+            var array = [$(".title-box").html().trim(), h_align, v_align];
+            formdata.append("data", JSON.stringify(array));
+            $.ajax({
+                type: "POST",
+                url: "php/preview.php",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function(response) {
+                    var page = window.open("about:blank");
+                    page.document.open();
+                    page.document.write(response);
+                    page.document.close();
+
+                }
+            });
+        });
+    });
 }
