@@ -47,16 +47,16 @@ Mr raj" required="required" class="form-control bg-light"  value="kumar">
 <div class="form-group">
 <label for="email">email<sup class="text-danger">*</sup></label>
 <input type="email" name="email" id="email" placeholder="
-a@gmail.com" required="required" class="form-control bg-light"  value="badal@gmail.com">
+a@gmail.com" required="required" class="form-control bg-light email"  value="badal@gmail.com">
 </div>
 
  <div class="form-group">
 <label for="Mobile">Mobile<sup class="text-danger">*</sup></label>
- <input  value="8520741963" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light">
+ <input  value="8520741963" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light mobile">
 </div>
 <div class="form-group">
 <label for="password">Password<sup class="text-danger">*</sup></label>
-<input  value="1234" type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
+<input  value="badal@123" type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
 </div>
 
 <div class="form-group">
@@ -70,7 +70,7 @@ a@gmail.com" required="required" class="form-control bg-light"  value="badal@gma
 <div class="form-group">
 <div class="btn-group border shadow-sm">
 <button class="btn btn-light" type="button">
-<input type="number" name="otp" placeholder=" 123456" class="form-control">
+<input type="number" name="otp" placeholder=" 123456" class="form-control otp">
 </button>
 <button class="btn btn-light verify-btn" type="button">VERIFY</ button>
 <button class="btn btn-light resend-btn" type="button">resend otp</button>
@@ -108,7 +108,77 @@ $(".register-btn").html("Please wait...");
 },
 success: function (response)
 {
-document.write(response)
+// alert(response)
+$(".otp-form").removeClass("d-none");
+$(".signup-form").addClass("d-none");
+ // verify otp
+ $(".verify-btn").click(function(){
+$.ajax({
+type: "POST",
+url: "pages/php/verify_otp.php",
+data : {
+otp: $(".otp").val().trim(),
+email:$(".email").val()
+},
+beforeSend: function(){
+$(this).html("Please wait..."); },
+success: function (response)
+{
+    if(response.trim()=="success")
+    {
+window.location = "signin.php";
+}
+
+else{
+$(".verify-btn").html(response);
+setTimeout(function(){
+$(".verify-btn").html("VERIFY");
+$(".otp").val('');
+},3000);
+}
+}
+});
+});
+
+//resend otp
+// resend otp
+$(".resend-btn").click(function(){
+$.ajax({
+type: "POST",
+url: "pages/php/resend_otp.php",
+data : {
+mobile : $(".mobile").val()
+},
+success: function (response)
+{
+if(response.trim() == "success")
+ {
+ $(".resend-btn").html("OTP HAS BEEN SENDED");
+ }
+else{
+ $(".resend-btn").html(response); 
+ setTimeout(function(){
+ $(".resend-btn").html("RESEND OTP"); 
+ },3000);
+
+}
+}
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 });
 });

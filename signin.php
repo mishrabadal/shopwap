@@ -38,7 +38,7 @@ include_once("assest/nav.php");
 <div class="form-group">
 <label for="email">email<sup class="text-danger">*</sup></label>
 <input type="email" name="email" id="email" placeholder="
-a@gmail.com" required="required" class="form-control bg-light">
+a@gmail.com" required="required" class="form-control bg-light email">
 </div>
 
 
@@ -51,7 +51,18 @@ a@gmail.com" required="required" class="form-control bg-light">
 <button class="btn btn-primary shadow-sm py-2" type="submit">LOGIN now</button>
 </div>
 </form>
+<form class="d-none otp-form">
 
+<div class="form-group">
+<div class="btn-group border shadow-sm">
+<button class="btn btn-light" type="button">
+<input type="number" name="otp" placeholder=" 123456" class="form-control otp">
+</button>
+<button class="btn btn-light verify-btn" type="button">VERIFY</ button>
+<button class="btn btn-light resend-btn" type="button">resend otp</button>
+</div>
+</div>
+</form>
 
 </div>
 <div class="col-md-1"></div>
@@ -67,6 +78,87 @@ a@gmail.com" required="required" class="form-control bg-light">
 include_once("assest/footer.php");
 ?>
 
+
+
+<script>
+    $(document).ready(function(){
+$(".signin-form").submit(function(e){
+ e.preventDefault();
+$.ajax({
+type: "POST",
+url: "pages/php/login.php",
+data: new FormData (this),
+processData: false,
+contentType: false,
+cache: false,
+success: function (response)
+{
+if(response.trim() == "success")
+{
+$(".otp-form").removeClass("d-none");
+$(".signin-form").addClass("d-none");
+// verify otp
+$(".verify-btn").click(function(){
+$.ajax({
+type: "POST",
+url: "pages/php/verify_otp.php",
+data : {
+otp: $(".otp").val().trim(),
+email:$(".email").val()
+},
+beforeSend: function(){
+$(this).html("Please wait..."); },
+success: function (response)
+{
+    if(response.trim()=="success")
+    {
+window.location = "signin.php";
+}
+
+else{
+$(".verify-btn").html(response);
+setTimeout(function(){
+$(".verify-btn").html("VERIFY");
+$(".otp").val('');
+},3000);
+}
+}
+});
+});
+
+//resend otp
+// resend otp
+$(".resend-btn").click(function(){
+$.ajax({
+type: "POST",
+url: "pages/php/resend_otp.php",
+data : {
+mobile : $(".mobile").val()
+},
+success: function (response)
+{
+if(response.trim() == "success")
+ {
+ $(".resend-btn").html("OTP HAS BEEN SENDED");
+ }
+else{
+ $(".resend-btn").html(response); 
+ setTimeout(function(){
+ $(".resend-btn").html("RESEND OTP"); 
+ },3000);
+
+}
+}
+});
+});
+
+}
+}
+
+});
+});
+});
+</script>
 </body>
 
 </html>
