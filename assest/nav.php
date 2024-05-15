@@ -1,5 +1,5 @@
-
 <?php
+session_start();
 $branding_result = "";
 $get_branding_data = "SELECT * FROM branding";
 $branding_response = $db->query($get_branding_data); 
@@ -7,6 +7,30 @@ if($branding_response)
 {
 $branding_result = $branding_response->fetch_assoc();
 }
+
+
+$menu="";
+if(empty($_COOKIE['_au_']))
+{
+$menu = '<a href="signup.php" class="dropdown-item"><i class="fa fa-user"></i>
+Sign up</a>
+<a href="signin.php" class="dropdown-item"><i class="fa fa-sign-in"></i> Sign in</a>';
+}
+else{
+    $fullname = "";
+    $username = base64_decode($_COOKIE['_au_']);
+    $get_data = "SELECT * FROM users WHERE email='$username'";
+    $response = $db->query($get_data);
+    if($response)
+    {
+    $data = $response->fetch_assoc();
+    $fullname = $data['firstname']." ".$data['lastname'];
+    }
+    $menu = '<a href="profile.php" class="dropdown-item text-capitalize"><i class="fa fa-user "></i> '.$fullname.'</a>
+    <a href="pages/php/signout.php" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign out</a>';
+}
+
+
 ?>
 
 
@@ -43,8 +67,9 @@ echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$n
 <button class="btn border dropdown">
 <i class="fa fa-user" data-toggle="dropdown"></i>
 <div class="dropdown-menu">
-<a href="signup.php" class="dropdown-item"><i class="fa fa-user"></i>Sign up</a>
-<a href="signin.php" class="dropdown-item"><i class="fa fa-sign-in"></i> Sign in</a>
+<?php
+echo $menu;
+?>
 </div>
 </button>
 

@@ -10,13 +10,30 @@ if($response)
     {
     $data = $response->fetch_assoc();
     $status = $data['status'];
+    $real_username = $data['email'];
+$real_password = $data['password'];
+
     if($status == 'pending')
     {
         $mobile = $data['mobile']; 
         require("sendsms.php");
     }
     else{
-     echo "active";
+    //  echo "active";
+
+    if( $real_username == $email && $real_password == $password)
+{
+    session_start();
+    $_SESSION['username'] = $email;
+    $cookie_data = base64_encode($email); $cookie_time = time()+(60*60*24*365);
+    setcookie('_au_', $cookie_data, $cookie_time,'/');
+    
+    echo "login success";
+
+}
+else{
+echo "<b>Wrong password</b>";
+}
     }
     }
     else{

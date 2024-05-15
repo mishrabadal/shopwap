@@ -38,13 +38,13 @@ include_once("assest/nav.php");
 <div class="form-group">
 <label for="email">email<sup class="text-danger">*</sup></label>
 <input type="email" name="email" id="email" placeholder="
-a@gmail.com" required="required" class="form-control bg-light email">
+a@gmail.com" value="badal@gmail.com" required="required" class="form-control bg-light email">
 </div>
 
 
 <div class="form-group">
 <label for="password">Password<sup class="text-danger">*</sup></label>
-<input type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
+<input type="password" value="badal@123" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
 </div>
 
 <div class="form-group">
@@ -58,12 +58,14 @@ a@gmail.com" required="required" class="form-control bg-light email">
 <button class="btn btn-light" type="button">
 <input type="number" name="otp" placeholder=" 123456" class="form-control otp">
 </button>
-<button class="btn btn-light verify-btn" type="button">VERIFY</ button>
+<button class="btn btn-light verify-btn" type="button">VERIFY</button>
 <button class="btn btn-light resend-btn" type="button">resend otp</button>
 </div>
 </div>
-</form>
 
+
+</form>
+<div class="form-group login-notice"></div>
 </div>
 <div class="col-md-1"></div>
 <div class="col-md-5">
@@ -105,7 +107,7 @@ type: "POST",
 url: "pages/php/verify_otp.php",
 data : {
 otp: $(".otp").val().trim(),
-email:$(".email").val()
+email: $(".email").val().trim()
 },
 beforeSend: function(){
 $(this).html("Please wait..."); },
@@ -113,7 +115,17 @@ success: function (response)
 {
     if(response.trim()=="success")
     {
-window.location = "signin.php";
+
+
+        var notice = document.createElement("DIV");
+notice.innerHTML = "<b>Mobile numberverified please login again</b>";
+ notice.className = "alert alert-info"; 
+ $(".login-notice").html(notice);
+setTimeout(function() {
+    window.location= "signin.php";
+},3000);
+
+
 }
 
 else{
@@ -134,7 +146,7 @@ $.ajax({
 type: "POST",
 url: "pages/php/resend_otp.php",
 data : {
-mobile : $(".mobile").val()
+mobile : $(".email").val()
 },
 success: function (response)
 {
@@ -154,8 +166,23 @@ else{
 });
 
 }
+
+else if(response.trim()=="login success"){
+window.location="index.php";
+}
+
+
+
+
+
 else{
-    alert(response);
+    var message = document.createElement("DIV"); message.innerHTML = "<b>"+response+"</b>";
+message.className = "alert alert-warning";
+$(".login-notice").html(message);
+setTimeout(function(){
+$(".login-notice").html('');
+$(".signin-form").trigger('reset');
+},3000);
 }
 }
 
