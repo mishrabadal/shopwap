@@ -91,8 +91,9 @@ data: new FormData (this),
 processData: false,
 contentType: false,
 cache: false,
-success: function (response)
+success: function(response)
 {
+
 if(response.trim() == "success")
 {
 $(".otp-form").removeClass("d-none");
@@ -126,7 +127,7 @@ $(".otp").val('');
 });
 });
 
-//resend otp
+// resend otp
 // resend otp
 $(".resend-btn").click(function(){
 $.ajax({
@@ -152,6 +153,9 @@ else{
 });
 });
 
+}
+else{
+    alert(response);
 }
 }
 
