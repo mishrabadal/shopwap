@@ -73,6 +73,115 @@ else{
 </div>
 </div>
 </div>
+
+
+<!-- start category showcase -->
+
+
+<div class="container animated swing">
+<h4 class="my-4 text-center">TRENDING PRODUCT</h4>
+<div class="row">
+<?php
+$dir = ['top-left', 'bottom-left', 'center', 'top-right', 'bottom-right'];
+ $top_left_image ="";
+  $top_left_label = "";
+
+  $bottom_left_image = "";
+  $bottom_left_label = "";
+
+  $center_image = "";
+  $center_label = "";
+
+  $top_right_image = "";
+  $top_right_label = "";
+
+  $bottom_right_image = "";
+  $bottom_right_label = "";
+
+
+
+for($i=0;$i<count($dir); $i++)
+{
+$get_data = "SELECT * FROM category_showcase WHERE direction='$dir[$i]'"; 
+$response = $db->query($get_data);
+if($response)
+{
+$data = $response->fetch_assoc();
+if($dir[$i] == "top-left")
+{
+$top_left_image = "data:image/png;base64,".base64_encode($data['image']); $top_left_label = $data['label'];
+}
+else if($dir[$i] == "bottom-left")
+{
+$bottom_left_image = "data:image/png;base64,".base64_encode($data['image']); $bottom_left_label = $data['label'];
+}
+else if($dir[$i] == "center")
+{
+$center_image = "data:image/png;base64,".base64_encode($data['image']); $center_label = $data['label'];
+
+}
+else if($dir[$i] == "top-right")
+{
+$top_right_image = "data:image/png;base64,".base64_encode($data['image']); $top_right_label = $data['label'];
+}
+else if($dir[$i] == "bottom-right")
+{
+$bottom_right_image = "data:image/png;base64,".base64_encode($data['image']); $bottom_right_label = $data['label'];
+}
+}
+}
+
+
+echo "<div class='col-md-4'>
+<div class='position-relative mb-3'> 
+<button class='btn bg-white p-2 shadow-1g border' style='position:absolute; top: 50%;left:50%; transform: translate(-50%,-50%);z-index:1000'>".$top_left_label."
+</button>
+<img src='".$top_left_image."' width='100%'>
+</div>
+<div class='position-relative mb-3'>
+<button class='btn bg-white p-2 shadow-1g border' style='position:absolute;top: 50%; left:50%; transform: translate(-50%,-50%);z-index:1000'>".$bottom_left_label."</button>
+<img src='".$bottom_left_image."' width='100%'></div></div>";
+
+
+echo "<div class='col-md-4'>
+<div class='position-relative mb-3'>
+<button class='btn bg-white p-2 shadow-1g border' style='position:absolute;top:50%;left:50%; transform: translate(-50%,-50%); z-index: 1000'>".$center_label."
+</button>
+<img src='".$center_image."' width='100%'>
+</div>
+</div>";
+
+
+echo "<div class='col-md-4'>
+<div class='position-relative mb-3'>
+<button class='btn bg-white p-2 shadow-1g border' style='position:absolute;top: 50%; left:50%; transform: translate(-50%,-50%);z-index:1000'>".$top_right_label."
+</button>
+<img src='".$top_right_image."' width='100%'>
+</div>
+<div class='position-relative mb-3'>
+<button class='btn bg-white p-2 shadow-lg border' style='position:absolute;top: 50%; left:50%; transform: translate(-50%,-50%);z-index:1000'>".$bottom_right_label
+."</button>
+<img src='".$bottom_right_image."' width='100%'>
+</div>
+</div>";
+
+
+
+?>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- end category showcase -->
+
 <?php
 include_once("assest/footer.php");
 ?>

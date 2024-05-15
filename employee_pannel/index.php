@@ -206,10 +206,23 @@ processData: false,
 contentType: false,
 cache: false,
 beforeSend: function(){
-set_btn.innerHTML = "Please wait..."
+set_btn.innerHTML = "Please wait...";
 },
 success: function (response) { 
-alert(response);
+
+// alert(response);
+if(response.trim() == "success")
+{
+dummy_pic.src = url;
+set_btn.innerHTML = "SET";
+$(upload_icon.parentElement.parentElement).addClass("d-none");
+dummy_pic.ondblclick = function(){
+$(upload_icon.parentElement.parentElement).removeClass("d-none");
+}
+}
+
+
+
 }
 });
 }
