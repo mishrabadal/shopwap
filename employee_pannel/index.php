@@ -15,7 +15,7 @@
     <script src="../common_files/js/bootstrap.bundle.min.js"></script>
     <script src="../common_files/js/popper.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/index.js"></script>
+    <script src="js/iindex.js"></script>
 
 
 </head>
@@ -48,8 +48,109 @@
         </div>
         <div class="page">
 
+    <!-- point -->
 
+    <div class="row">
+    <div class="col-md-4">
+    <div class="position-relative">
+<div class="btn-group border shadow-sm position-absolute" style="width :352px;z-index:10">
+
+<button class="btn btn-dark">
+<input type="file" accept="image/*" class="upload-icon
+position-absolute form-control" style="width:100%; height:100%; border:1px solid red;top:0;left:0;opacity:0">
+<i class="fa fa-upload"></i>
+</button>
+
+<button class="btn">
+<input type="text" class="form-control upload-label" placeholder="Mobile">
+</button>
+<button class="btn btn-dark set-btn" img-dir="top-left" disabled="disabled">
+SET
+</button>
+</div>
+<img src="../common_files/images/small_sample.jpg" alt="small sample" class="w-100 mb-3">
+</div>
+
+
+<div class="position-relative">
+<div class="btn-group border shadow-sm position-absolute" style="width :352px;z-index:10">
+<button class="btn btn-dark">
+<input type="file" accept="image/*" class="upload-icon
+position-absolute form-control" style="width:100%; height:100%; border:1px solid red;top:0;left:0;opacity:0">
+<i class="fa fa-upload"></i>
+</button>
+<button class="btn">
+<input type="text" class="form-control upload-label" placeholder="Mobile">
+</button>
+<button class="btn btn-dark set-btn" img-dir="bottom-left" disabled="disabled">
+SET
+</button>
+</div>
+<img src="../common_files/images/small_sample.jpg" alt="small sample" class="w-100 mb-3">
+</div>
+</div>
+
+    
+ 
+    <div class="col-md-4">
+    <div class="position-relative">
+<div class="btn-group border shadow-sm position-absolute" style="width :352px;z-index:10">
+<button class="btn btn-dark">
+<input type="file" accept="image/*" class="upload-icon
+position-absolute form-control" style="width:100%; height:100%; border:1px solid red;top:0;left:0;opacity:0">
+<i class="fa fa-upload"></i>
+</button>
+<button class="btn">
+<input type="text" class="form-control upload-label" placeholder="Mobile">
+</button>
+<button class="btn btn-dark set-btn" img-dir="center" disabled="disabled">
+SET
+</button>
+</div>
+<img src="../common_files/images/large_sample.jpg" alt="large sample" class="w-100 mb-3">
+</div>
+    
+    </div>
+    <div class="col-md-4">
+
+    <div class="position-relative">
+<div class="btn-group border shadow-sm position-absolute" style="width :352px;z-index:10">
+<button class="btn btn-dark">
+<input type="file" accept="image/*" class="upload-icon
+position-absolute form-control" style="width:100%; height:100%; border:1px solid red;top:0;left:0;opacity:0">
+<i class="fa fa-upload"></i>
+</button>
+<button class="btn">
+<input type="text" class="form-control upload-label" placeholder="Mobile">
+</button>
+<button class="btn btn-dark set-btn" img-dir="top-right" disabled="disabled">
+SET
+</button>
+</div>
+<img src="../common_files/images/small_sample.jpg" alt="small sample" class="w-100 mb-3">
+</div>
+
+<div class="position-relative">
+<div class="btn-group border shadow-sm position-absolute" style="width :352px;z-index:10">
+<button class="btn btn-dark">
+<input type="file" accept="image/*" class="upload-icon 
+position-absolute form-control" style="width:100%; height:100%; border:1px solid red;top:0;left:0;opacity:0">
+<i class="fa fa-upload"></i>
+</button>
+<button class="btn">
+<input type="text" class="form-control upload-label" placeholder="Mobile">
+</button>
+<button class="btn btn-dark set-btn" img-dir="bottom-right" disabled="disabled">
+SET
+</button>
+</div>
+<img src="../common_files/images/small_sample.jpg" alt="small sample" class="w-100 mb-3">
+</div>
+    </div>
         </div>
+    </div>
+    <!-- points sol-->
+
 
     </div>
 
@@ -59,8 +160,76 @@
 
 </body>
 
-<script>
 
+
+<script>
+$(document).ready(function(){
+$(".upload-icon").each(function(){
+$(this).on("change", function(){
+var upload_icon = this;
+var dummy_pic = upload_icon.parentElement.parentElement.parentElement.getElementsByTagName("img")[0];
+var input = upload_icon.parentElement.parentElement.getElementsByTagName("INPUT")[1];
+var set_btn = upload_icon.parentElement.parentElement.getElementsByClassName("set-btn")[0];
+
+// alert(dummy_pic.naturalWidth)
+var dummy_pic_width = dummy_pic.naturalWidth;
+var dummy_pic_height = dummy_pic.naturalHeight;
+var file = upload_icon.files[0];
+var url = URL.createObjectURL(file);
+var image = new Image();
+image.src = url;
+var uploaded_width = "";
+var uploaded_height = "";
+image.onload = function(){
+uploaded_width = image.width;
+uploaded_height = image.height;
+
+if(dummy_pic_width == uploaded_width && dummy_pic_height == uploaded_height)
+{
+// alert("done");
+input.oninput = function(){
+if(this.value.length >= 1)
+{
+    
+set_btn.disabled = false;
+set_btn.onclick = function(){
+var formdata = new FormData(); 
+formdata.append("photo", file); 
+formdata.append("text", input.value);
+formdata.append("direction", $(set_btn).attr("img-dir"));
+// alert($(".set_btn").attr("img-dir"));
+$.ajax({
+type: "POST",
+url: "php/category_showcase.php",
+data: formdata,
+processData: false,
+contentType: false,
+cache: false,
+beforeSend: function(){
+set_btn.innerHTML = "Please wait..."
+},
+success: function (response) { 
+alert(response);
+}
+});
+}
+
+
+}
+else{
+set_btn.disabled = true;
+}
+}
+
+
+}
+else{
+alert("Please upload "+dummy_pic_width+"/"+dummy_pic_height);
+}
+}
+});
+});
+});
 </script>
 </body>
 
