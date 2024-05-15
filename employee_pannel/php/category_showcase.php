@@ -1,8 +1,14 @@
 <?php
 
 require_once("../../common_files/php/database.php");
-$file = $_FILES['photo'];
-$image = addslashes(file_get_contents($file['tmp_name']));
+$file ="";
+$image="";
+if($_FILES)
+{
+    $file = $_FILES['photo'];
+    $image = addslashes(file_get_contents($file['tmp_name']));
+}
+
 $label = $_POST['text'];
 $direction = $_POST['direction'];
 // $file = $_FILES['photo'];
@@ -14,6 +20,7 @@ if($response)
 {
     // echo "table found";
     if($response->num_rows != 0){
+    if($file !=""){
     $update_data = "UPDATE category_showcase SET image='$image', label='$label' WHERE direction='$direction'";
     $response = $db->query($update_data);
     if($response)
@@ -23,6 +30,19 @@ if($response)
     else{
     echo "Unable to update data";
     }
+    }
+else{
+    $update_data = "UPDATE category_showcase SET   label='$label' WHERE direction='$direction'";
+    $response = $db->query($update_data);
+    if($response)
+    {
+    echo "success";
+    }
+    else{
+    echo "Unable to update data";
+    }
+}
+
     }
     else{
 
