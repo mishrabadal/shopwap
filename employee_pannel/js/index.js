@@ -69,7 +69,10 @@ function dynamic_request(request_link) {
         success: function (response) {
             $(".page").html(response);
 
-
+            if(request_link =="category_showcase_design.php"){
+                category_Showcase();
+            }    
+            
             if(request_link =="header_showcase_design.php"){
                 header_showcase();
             }            
@@ -80,12 +83,24 @@ if(request_link =="branding_design.php"){
 //create products
 $(".create-products-form").submit(function(e){
 
+    var option = $(".brands-name option");
+var i;
+var c_name = "";
+for(i=0;i<option.length;i++)
+{
+if(option[i].innerHTML == $(".brands-name").val())
+{
+c_name = $(option[i]).attr("c-name");
+}
+}
+
+
 e.preventDefault();
 if($(".brands-name").val() !="choose brands")
     {
 $.ajax({
 type:"POST",
-url : "php/create_product.php",
+url : "php/create_product.php?c_name="+c_name,
 data : new FormData(this),
 processData:false,
 contentType:false,
@@ -112,7 +127,7 @@ success:function(response){
         $(".create-products-form").trigger('reset');
         }
         else{
-        alert(response);
+        document.write(response);
         }
 }
 
@@ -940,4 +955,150 @@ function header_showcase() {
             });
         });
     });
+}
+
+
+//category showcase coding
+function category_Showcase() {
+    $(document).ready(function() {
+        $(".upload-icon").each(function() {
+            $(this).on("change", function() {
+                var upload_icon = this;
+                var dummy_pic = upload_icon.parentElement.parentElement.parentElement.getElementsByTagName("img")[0];
+                var input = upload_icon.parentElement.parentElement.getElementsByTagName("INPUT")[1];
+                var set_btn = upload_icon.parentElement.parentElement.getElementsByClassName("set-btn")[0];
+
+                // alert(dummy_pic.naturalWidth)
+                var dummy_pic_width = dummy_pic.naturalWidth;
+                var dummy_pic_height = dummy_pic.naturalHeight;
+                var file = upload_icon.files[0];
+                var url = URL.createObjectURL(file);
+                var image = new Image();
+                image.src = url;
+                var uploaded_width = "";
+                var uploaded_height = "";
+                image.onload = function() {
+                    uploaded_width = image.width;
+                    uploaded_height = image.height;
+
+                    if (dummy_pic_width == uploaded_width && dummy_pic_height == uploaded_height) {
+                        // alert("done");
+                        input.oninput = function() {
+                            if (this.value.length >= 1) {
+
+                                set_btn.disabled = false;
+                                set_btn.onclick = function() {
+                                    var formdata = new FormData();
+                                    formdata.append("photo", file);
+                                    formdata.append("text", input.value);
+                                    formdata.append("direction", $(set_btn).attr("img-dir"));
+                                    // alert($(".set_btn").attr("img-dir"));
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "php/category_showcase.php",
+                                        data: formdata,
+                                        processData: false,
+                                        contentType: false,
+                                        cache: false,
+                                        beforeSend: function() {
+                                            set_btn.innerHTML = "Please wait...";
+                                        },
+                                        success: function(response) {
+
+                                            // alert(response);
+                                            if (response.trim() == "success") {
+                                                dummy_pic.src = url;
+                                                set_btn.innerHTML = "SET";
+                                                $(upload_icon.parentElement.parentElement).addClass("d-none");
+                                                dummy_pic.ondblclick = function() {
+                                                    $(upload_icon.parentElement.parentElement).removeClass("d-none");
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+
+
+                            } else {
+                                set_btn.disabled = true;
+                            }
+                        }
+
+
+                    } else {
+                        alert("Please upload " + dummy_pic_width + "/" + dummy_pic_height);
+                    }
+                }
+            });
+        });
+    });
+
+
+
+
+
+
+    //set btn enable and desable code
+    $(document).ready(function() {
+        var img = $("img");
+        var i;
+        for (i = 0; i < img.length; i++) {
+            if (img[i].src.indexOf("base64") != -1) {
+                var set_btn = img[i].parentElement.getElementsByClassName("set-btn")[0];
+                set_btn.disabled = false;
+
+                $(".set-btn").each(function() {
+                    $(this).click(function() {
+
+                        set_btn = this;
+                        var input = this.parentElement.getElementsByTagName("INPUT");
+                        var file = input[0].files[0];
+                        var text = input[1].value;
+
+                        var input = this.parentElement.getElementsByTagName("INPUT");
+                        var file = input[0].files[0];
+                        var text = input[1].value;
+                        var dummy_pic = this.parentElement.parentElement.getElementsByTagName("img")[0];
+                        var url = dummy_pic.src;
+                        if (input[0].value != "") {
+                            url = URL.createObjectURL(input[0].files[0]);
+                        }
+                        var formdata = new FormData();
+                        formdata.append("photo", file);
+                        formdata.append("text", text);
+                        formdata.append("direction", $(set_btn).attr("img-dir"));
+                        // alert($(".set_btn").attr("img-dir"));
+                        $.ajax({
+                            type: "POST",
+                            url: "php/category_showcase.php",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            beforeSend: function() {
+                                set_btn.innerHTML = "Please wait...";
+                            },
+                            success: function(response) {
+
+                                // alert(response);
+                                if (response.trim() == "success") {
+                                    dummy_pic.src = url;
+                                    set_btn.innerHTML = "SET";
+                                    $(set_btn.parentElement).addClass("d-none");
+                                    dummy_pic.ondblclick = function() {
+                                        $(set_btn.parentElement).removeClass("d-none");
+                                    }
+                                }
+                            }
+                        });
+
+
+                    });
+                });
+
+
+            }
+        }
+    });
+
 }

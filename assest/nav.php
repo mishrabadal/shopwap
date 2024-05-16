@@ -38,16 +38,18 @@ else{
 <div class="container-fluid bg-white shadow-sm">
 <nav class="container navbar navbar-expand-sm bg-white">
 
-<a href="#" class="text-uppercase navbar-brand border shadow-sm d-flex flex-column align-items-center p-2">
+<a href="#" class="text-uppercase navbar-brand border shadow-sm d-flex align-items-center p-2">
 <?php
 $logo_string = base64_encode($branding_result['brand_logo']); $complete_src = "data:image/png;base64,".$logo_string;
-echo "<img src='".$complete_src."' width='50'>";
+echo "<img src='".$complete_src."' width='20'>";
+echo "&nbsp";
 echo "<small>".$branding_result['brand_name']. "</small>";
 ?>
 </a>
 
 
 <!-- //point solutions -->
+<div class="collapse navbar-collapse" id="menu-box">
 <ul class="navbar-nav">
 <?php
 $get_menu = "SELECT category_name FROM category"; $get_menu_response = $db->query($get_menu); if($get_menu_response)
@@ -59,8 +61,10 @@ echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$n
 }
 ?>
 </ul>
+</div>
 
 <div class="btn-group ml-auto">
+<button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box"><i class="fa fa-bars"></i></button>
 <button class="btn border"><i class="fa fa-shopping-bag"></i>
 </button>
 <button class="btn border"><i class="fa fa-search"></i></button>

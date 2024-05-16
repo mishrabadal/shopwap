@@ -1,5 +1,6 @@
 <?php
 require_once("../../common_files/php/database.php");
+$c_name = $_GET['c_name'];
 $product_title = $_POST['title'];
 $product_description = $_POST['description'];
 $brands = $_POST['brands'];
@@ -39,7 +40,7 @@ else{
 
 if($response)
 {
-$store_data = "INSERT INTO products ( brands, title, description, price, quantity) VALUES ('$brands', '$product_title', '$product_description', '$price', '$quantity')";
+$store_data = "INSERT INTO products ( category_name,brands, title, description, price, quantity) VALUES ('$c_name','$brands', '$product_title', '$product_description', '$price', '$quantity')";
 $response = $db->query($store_data);
 
 if($response)
@@ -80,14 +81,16 @@ echo "Unable to store data  in products table";
 
 else{
 $create_table = "CREATE TABLE products(
-id INT(11) NOT NULL AUTO_INCREMENT, brands VARCHAR(50),
+id INT(11) NOT NULL AUTO_INCREMENT,
+category_name VARCHAR(50),
+ brands VARCHAR(50),
 title VARCHAR(100),
 description VARCHAR(255),
 price FLOAT (20),
 quantity INT(10),
 thumb_pic VARCHAR(100),
 front_pic VARCHAR(100),
-top_pic VARCHAR(100),
+top_pic VARCHAR(100), 
 bottom_pic VARCHAR(100),
 left_pic VARCHAR(100),
 right_pic VARCHAR(100),
@@ -96,7 +99,7 @@ PRIMARY KEY(id)
 $response = $db->query($create_table);
 if($response)
 {
-$store_data = "INSERT INTO products ( brands, title, description, price, quantity) VALUES ('$brands', '$product_title', '$product_description', '$price', '$quantity')";
+$store_data = "INSERT INTO products (category_name, brands, title, description, price, quantity) VALUES ('$c_name','$brands', '$product_title', '$product_description', '$price', '$quantity')";
 $response = $db->query($store_data);
 if($response)
 {
