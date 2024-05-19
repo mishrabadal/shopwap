@@ -17,6 +17,7 @@ require_once("./common_files/databases/databases.php");
     <script src="common_files/js/jquery.min.js"></script>
     <script src="common_files/js/bootstrap.bundle.min.js"></script>
     <script src="common_files/js/popper.min.js"></script>
+    <script src="pages/js/index.js"></script>
     <!-- <link rel="stylesheet" href="css/index.css"> -->
     <!-- <script src="js/index.js"></script> -->
 
@@ -78,22 +79,22 @@ require_once("./common_files/databases/databases.php");
                         } else {
                             $text_align = "text-left";
                         }
-                        $v_align = $data['v_align'];
-                        $title_color = $data['title_color'];
-                        $title_size = $data['title_size'];
-                        $subtitle_color = $data['subtitle_color'];
-                        $subtitle_size = $data['subtitle_size'];
-                        echo "<div class='carousel-item carousel-item-control'>";
-                        $image = "data:image/png;base64," . base64_encode($data['title_image']);
-                        echo "<img src='" . $image . "' class='w-100'>";
-                        echo "<div class='carousel-caption " . $text_align . "d-flex h-100' style='justify-content:" . $h_align . "; align-items:" . $v_align . "'>";
-                        echo "<div>";
-                        echo "<h1 style='color:" . $title_color . "; font-size:" . $title_size . "'>" . $data['title_text'] . "</h1>";
-                        echo "<h4 style='color:" . $subtitle_color . "; font-size:" . $subtitle_size . "'> " . $data['subtitle_text'] . "</h4>";
-                        echo $data['buttons'];
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</div>";
+    $v_align = $data['v_align'];
+    $title_color = $data['title_color'];
+    $title_size = $data['title_size'];
+    $subtitle_color = $data['subtitle_color'];
+    $subtitle_size = $data['subtitle_size'];
+    echo "<div class='carousel-item carousel-item-control'>";
+    $image = "data:image/png;base64," . base64_encode($data['title_image']);
+    echo "<img src='" . $image . "' class='w-100'>";
+    echo "<div class='carousel-caption " . $text_align . "d-flex h-100' style='justify-content:" . $h_align . "; align-items:" . $v_align . "'>";
+    echo "<div>";
+    echo "<h1 style='color:" . $title_color . "; font-size:" . $title_size . "'>" . $data['title_text'] . "</h1>";
+    echo "<h4 style='color:" . $subtitle_color . "; font-size:" . $subtitle_size . "'> " . $data['subtitle_text'] . "</h4>";
+    echo $data['buttons'];
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
                     }
                 }
                 ?>
@@ -214,7 +215,9 @@ echo "<i class='fa fa-star-o text-warning'></i>";
 echo "<i class='fa fa-star-o text-warning'></i>";
 echo "<br><span>".$data['title']."</span>";
 echo "<br><span><i class='fa fa-rupee'></i> ".$data['price']."</span>";
- echo "<br><button class='btn btn-danger mt-3'><i class='fa fa-shopping-cart'></i> ADD TO CART</button> <button class='btn btn-primary mt-3'><i class='fa fa-shopping-bag'></i> BUY NOW</button>"; 
+ echo "<br>
+ <button class='btn btn-danger mt-3 cart-btn' product-id='".$data['id']."' product-title='".$data['title']."' product-price='".$data['price']."' product-brand='".$data['brands']."' product-pic='".$data['thumb_pic']."'><i class='fa fa-shopping-cart ' ></i> ADD TO CART</button> 
+ <button class='btn btn-primary mt-3' product-id='".$data['id']."'><i class='fa fa-shopping-bag'></i> BUY NOW</button>"; 
  echo "</div>";
 
 }
