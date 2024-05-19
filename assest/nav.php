@@ -1,6 +1,7 @@
 <?php
 session_start();
 $branding_result = "";
+$cart_count="";
 $get_branding_data = "SELECT * FROM branding";
 $branding_response = $db->query($get_branding_data); 
 if($branding_response)
@@ -28,6 +29,21 @@ else{
     }
     $menu = '<a href="profile.php" class="dropdown-item text-capitalize"><i class="fa fa-user "></i> '.$fullname.'</a>
     <a href="pages/php/signout.php" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign out</a>';
+
+    $get_cart = "SELECT COUNT(id) AS result FROM cart WHERE username='$username'";
+$response = $db->query($get_cart);
+if($response->num_rows != 0)
+{
+    $data = $response->fetch_assoc();
+    if($data['result'] !=0){
+$cart_count = '<div style="position: absolute; width: 25px;height:25px; background-color:red;color:white; font-weight:bold; border-radius:50%; z-index: 1000;
+ left: 25px; top:-10px"> <span>'.$data["result"].'
+</span>
+</div>';
+
+    }
+
+} 
 }
 
 
@@ -48,7 +64,7 @@ echo "<small>".$branding_result['brand_name']. "</small>";
 </a>
 
 
-<!-- //point solutions -->
+
 <div class="collapse navbar-collapse" id="menu-box">
 <ul class="navbar-nav">
 <?php
@@ -65,7 +81,14 @@ echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$n
 
 <div class="btn-group ml-auto">
 <button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box"><i class="fa fa-bars"></i></button>
-<button class="btn border"><i class="fa fa-shopping-bag"></i>
+<button class="btn border">
+    <a href="pages/php/show_cart.php">
+    <i class="fa fa-shopping-cart"></i>
+<!-- point -->
+<?php
+echo $cart_count;
+
+?></a>
 </button>
 <button class="btn border"><i class="fa fa-search"></i></button>
 <button class="btn border dropdown">
