@@ -37,7 +37,7 @@ if($response->num_rows != 0)
     $data = $response->fetch_assoc();
     if($data['result'] !=0){
 $cart_count = '<div style="position: absolute; width: 25px;height:25px; background-color:red;color:white; font-weight:bold; border-radius:50%; z-index: 1000;
- left: 25px; top:-10px"> <span>'.$data["result"].'
+ left: 25px; top:-10px" class="cart-notification"> <span>'.$data["result"].'
 </span>
 </div>';
 
@@ -82,9 +82,9 @@ echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$n
 <div class="btn-group ml-auto">
 <button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box"><i class="fa fa-bars"></i></button>
 <button class="btn border">
-    <a href="pages/php/show_cart.php">
+    <a href="pages/php/show_cart.php" class="cart-link" >
     <i class="fa fa-shopping-cart"></i>
-<!-- point -->
+
 <?php
 echo $cart_count;
 

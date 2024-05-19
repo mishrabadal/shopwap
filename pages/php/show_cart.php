@@ -22,6 +22,7 @@ exit;
     <script src="../../common_files/js/jquery.min.js"></script>
     <script src="../../common_files/js/bootstrap.bundle.min.js"></script>
     <script src="../../common_files/js/popper.min.js"></script>
+    <script src="../../pages/js/index.js"></script>
 
    <!-- <script src="js/index.js"></script> -->
 
@@ -56,9 +57,9 @@ width='100'>
 <span>".$data['product_brand']."</span><br>
 <span><i class='fa fa-rupee'></i>".$data['product_price']."</span><br>
 <div class='btn-group shadow-sm mt-2'>
-<button class='btn btn-primary' product-id='"
+<button class='btn btn-primary delete-cart-btn' product-id='"
 .$data['product_id']."'><i class='fa fa-trash'></i></button>
-<button class='btn btn-danger' product-id='".
+<button class='btn btn-danger buy-btn' product-id='".
 $data['product_id']."'>BUY NOW</button>
 
 </div>
