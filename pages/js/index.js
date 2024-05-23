@@ -112,3 +112,37 @@ $(document).ready(function(){
     });
     });
     });
+
+    //buy btn
+    // remove from cart
+$(document).ready(function(){
+    $(".buy-btn").each(function(){
+    $(this).click(function(){
+    var product_id = $(this).attr("product-id");
+window.location="buy_product.php?id="+product_id;
+    }); 
+    });
+    });
+
+
+    //purchase btn
+    $(document).ready(function(){
+        $(".purchase-btn").click(function(){
+        var pay_mode = $("input[name='pay-mode']:checked").val();
+        if(pay_mode)
+        {
+            var id = $(this).attr("product-id");
+            var title = $(this).attr("product-title");
+            var brand = $(this).attr("product-brand");
+            var price = $(this).attr("product-price");
+            var qnt = $(".quantity").val();
+            if(pay_mode == "online")
+            {
+               window.location="../../pay/pay.php?id="+id+"&title="+title+"&brand="+brand+"&price="+price+"&qnt="+qnt;
+            }
+        }
+        else{
+        alert("Please choose a payment mode");
+        }
+        });
+        });

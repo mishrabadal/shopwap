@@ -26,6 +26,10 @@ else{
     {
     $data = $response->fetch_assoc();
     $fullname = $data['firstname']." ".$data['lastname'];
+    $_SESSION['fullname'] = $fullname;
+$_SESSION['mobile'] = $data['mobile'];
+
+
     }
     $menu = '<a href="profile.php" class="dropdown-item text-capitalize"><i class="fa fa-user "></i> '.$fullname.'</a>
     <a href="pages/php/signout.php" class="dropdown-item"><i class="fa fa-sign-out"></i> Sign out</a>';
