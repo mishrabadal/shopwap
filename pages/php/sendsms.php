@@ -1,7 +1,8 @@
 <?php
 require('textlocal.class.php');
 session_start(); 
-$textlocal = new Textlocal(false,false,'NDE3MTYyNmU0ZjU5NzM3NjQ4NTkzNTY0NjkzNjM4NDc=');
+$textlocal = new Textlocal(false,false,'MzI1NzUxNjc3NTQ5MzQzMDc2MzQ3OTMyNTg3NTZmNmE=');
+//NDE3MTYyNmU0ZjU5NzM3NjQ4NTkzNTY0NjkzNjM4NDc=
 $mobile=6287055423;
 $numbers = array($mobile);
 $sender = 'TXTLCL';
