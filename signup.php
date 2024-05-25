@@ -52,12 +52,43 @@ a@gmail.com" required="required" class="form-control bg-light email"  value="bad
 
  <div class="form-group">
 <label for="Mobile">Mobile<sup class="text-danger">*</sup></label>
- <input  value="8520741963" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light mobile">
+ <input  value="9608519031" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light mobile">
 </div>
 <div class="form-group">
 <label for="password">Password<sup class="text-danger">*</sup></label>
 <input  value="badal@123" type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
 </div>
+
+
+
+<div class="form-group">
+<label for="address">address<sup class="text-danger">*</sup></label>
+<textarea   type="text" name="address"  placeholder="address" required="required" class="form-control bg-light">
+
+Lal Qila, Chandni Chowk, New Delhi, Delhi, 110006
+</textarea>
+</div>
+<div class="form-group">
+<label for="state">state<sup class="text-danger">*</sup></label>
+<input  value="bihar" type="text" name="state"   required="required" class="form-control bg-light">
+</div>
+
+<div class="form-group">
+<label for="country">country<sup class="text-danger">*</sup></label>
+<input  value="india" type="text" name="country" required="required" class="form-control bg-light">
+</div>
+
+<div class="form-group">
+<label for="pincode">pincode<sup class="text-danger">*</sup></label>
+<input  value="843320" type="text" name="pincode"  required="required" class="form-control bg-light">
+</div>
+
+
+
+
+
+
+
 
 <div class="form-group">
 <button class="btn btn-primary shadow-sm py-2 register-btn" type="submit"> Register now</button>

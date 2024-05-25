@@ -8,7 +8,18 @@ $qnt=$_GET['qnt'];
 $fullname = $_SESSION['fullname'];
 $mobile = $_SESSION['mobile'];
 
-echo $id.$amount.$title.$brand.$qnt;
+//all are my personal code
+$_SESSION['buy_id']=$id;
+$_SESSION['buy_amount']=$amount;
+$_SESSION['buy_title']=$title;
+$_SESSION['buy_brand']=$brand;
+$_SESSION['buy_qnt']=$qnt;
+$_SESSION['buy_fullname']=$fullname;
+$_SESSION['buy_mobile']=$mobile;
+
+
+//all are my personal code
+
 ?>
 
 
@@ -51,7 +62,7 @@ echo $id.$amount.$title.$brand.$qnt;
                    
                     sessionStorage.setItem("p_id", response.razorpay_payment_id);
                     sessionStorage.setItem("o_id", response.razorpay_order_id);
-                    window.location="verify.php";
+                    window.location="verify.php?pay_id="+response.razorpay_payment_id;
                     //alert(response.razorpay_order_id);
                     // alert(response.razorpay_signature);
                 },
@@ -73,6 +84,10 @@ echo $id.$amount.$title.$brand.$qnt;
             rzp1.open();
             e.preventDefault();
       
+    </script>
+
+    <script>
+       
     </script>
 </body>
 

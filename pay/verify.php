@@ -65,6 +65,13 @@
 var p = document.getElementById("p-id");
 p.innerHTML +=sessionStorage.getItem("p_id");
 if(sessionStorage.getItem("p_id")!="undefined"){
+    <?php
+    $payment_id = $_GET['pay_id'];
+    session_start();
+  $_SESSION['payment_id']= $payment_id;
+    ?>
+
+    
    window.location ="purchase_entry.php";
 }
 else{
