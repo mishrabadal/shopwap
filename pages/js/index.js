@@ -119,7 +119,7 @@ $(document).ready(function(){
     $(".buy-btn").each(function(){
     $(this).click(function(){
     var product_id = $(this).attr("product-id");
-window.location="buy_product.php?id="+product_id;
+window.location="http://localhost/shopwap/pages/php/buy_product.php?id="+product_id;
     }); 
     });
     });

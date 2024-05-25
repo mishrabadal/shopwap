@@ -217,7 +217,7 @@ echo "<br><span>".$data['title']."</span>";
 echo "<br><span><i class='fa fa-rupee'></i> ".$data['price']."</span>";
  echo "<br>
  <button class='btn btn-danger mt-3 cart-btn' product-id='".$data['id']."' product-title='".$data['title']."' product-price='".$data['price']."' product-brand='".$data['brands']."' product-pic='".$data['thumb_pic']."'><i class='fa fa-shopping-cart ' ></i> ADD TO CART</button> 
- <button class='btn btn-primary mt-3' product-id='".$data['id']."'><i class='fa fa-shopping-bag'></i> BUY NOW</button>"; 
+ <button class='btn btn-primary mt-3 buy-btn' product-id='".$data['id']."'><i class='fa fa-shopping-bag'></i> BUY NOW</button>"; 
  echo "</div>";
 
 }

@@ -86,7 +86,7 @@ echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$n
 <div class="btn-group ml-auto">
 <button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box"><i class="fa fa-bars"></i></button>
 <button class="btn border">
-    <a href="pages/php/show_cart.php" class="cart-link" >
+    <a href="http://localhost/shopwap/pages/php/show_cart.php" class="cart-link" >
     <i class="fa fa-shopping-cart"></i>
 
 <?php
