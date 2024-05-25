@@ -6,9 +6,14 @@ $brand = $_POST['product_brand'];
 $price = $_POST['product_price'];
 $pic = $_POST['product_pic'];
 $username = base64_decode($_COOKIE['_au_']);
-$get_data = "SELECT * FROM cart";
+
+
+
+$get_data = "SELECT * FROM cart WHERE product_id='$id' AND username='$username'";
 $response = $db->query($get_data);
 if($response){
+
+    if($response->num_rows==0){
     $store_data = "INSERT INTO cart (product_id, product_title, product_price, product_brand, product_pic, username) VALUES('$id', '$title', '$price', '$brand', '$pic', '$username')";
     $response = $db->query($store_data);
     if($response)
@@ -19,6 +24,11 @@ if($response){
         echo $db->error;
     echo "Unable to store data";
     }
+}
+
+else{
+    echo "product already in cart";
+}
 }
 else{ 
     $create_table = "CREATE TABLE cart (

@@ -84,10 +84,10 @@ $_SESSION['buy_mobile']=$mobile;
             rzp1.open();
             e.preventDefault();
       
-    </script>
+    </script> 
 
     <script>
-       
+    //    window.location="verify.php?pay_id=pay_6786875";
     </script>
 </body>
 

@@ -26,7 +26,7 @@ temp_cookie[i]=cookie[0].trim();
             var product_pic = $(this).attr("product-pic");
             $.ajax({
             type: "POST",
-            url: "pages/php/cart.php",
+            url: "http://localhost/shopwap/pages/php/cart.php",
             data: {
                  product_id : product_id,
                  product_title: product_title,
@@ -67,7 +67,7 @@ temp_cookie[i]=cookie[0].trim();
 
                 }
                 else{
-                    alert("unable to add product in your car");
+                    alert(response);
                 }
 
 

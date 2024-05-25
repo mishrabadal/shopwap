@@ -12,7 +12,8 @@ header("Location:../../signin.php");
 exit;
 }
 $id = $_GET['id'];
-
+$username = base64_decode($_COOKIE['_au_']);
+//echo $username;
 $get_product = "SELECT * FROM products WHERE id='$id'";
 $response = $db->query($get_product);
 $title = "";
@@ -29,6 +30,26 @@ $price = $data['price'];
 $brand = $data['brands'];
 $category = $data['category_name'];
 }
+
+// activate cart button
+$cart_btn = "";
+$get_cart = "SELECT * FROM cart WHERE product_id='$id' AND username='$username'";
+$response = $db->query($get_cart);
+if($response->num_rows != 0)
+{
+$cart_btn = "";
+}
+else{
+    $cart_btn = "<button class='btn btn-danger mt-3 cart-btn' product-id='".$data['id']."' product-title='".$data['title']."' product-price='".$data['price']."' product-brand='".$data['brands']."' product-pic='".$data['thumb_pic']."'><i class='fa fa-shopping-cart ' ></i> ADD TO CART</button>";
+}
+
+
+
+
+
+
+
+
 
 ?>
 <!DOCTYPE html>
@@ -90,9 +111,9 @@ width:80px" value="1">
 <h4>Pay mode</h4>
 <input type="radio" name="pay-mode" value="online"> ONLINE
 <input type="radio" name="pay-mode" value="cod"> CASH ON DELIVERY<br>
-
-<button class="btn btn-danger cart-btn"><i class="fa
-fa-shopping-cart"></i> ADD TO CART</button>
+<?php 
+echo $cart_btn;
+?>
 
 <button class="btn btn-primary purchase-btn" product-id="<?php echo $_GET['id']?>" product-title="<?php echo $title;?>" product-brand="<?php echo $brand;?> " product-price="<?php echo $price;?> ">BUY NOW</button>
 </div>
