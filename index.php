@@ -200,7 +200,7 @@ require_once("./common_files/databases/databases.php");
          <h4 class="my-4 text-center">PRODUCTS FOR YOU</h4>
 <div class="row">
 <?php
-$get_data = "SELECT * FROM products LIMIT 12";
+$get_data = "SELECT * FROM products ORDER BY RAND()  LIMIT 12";
 $response = $db->query($get_data);
 if($response)
 {

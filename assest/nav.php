@@ -29,6 +29,8 @@ else{
     $_SESSION['fullname'] = $fullname;
 $_SESSION['mobile'] = $data['mobile'];
 
+// echo $_SESSION['fullname'];
+// echo $_SESSION['mobile'];
 
     }
     $menu = '<a href="profile.php" class="dropdown-item text-capitalize"><i class="fa fa-user "></i> '.$fullname.'</a>

@@ -26,7 +26,7 @@ require("../common_files/databases/databases.php")
 <body>
     <div class="container-fluid">
         <div class="sidebar">
-            <button class="btn  w-100 text-left collapse-item w-100 active" access-link="branding_design.php">
+            <button class="btn  w-100 text-left collapse-item w-100 " access-link="branding_design.php">
                 <i class="fa fa-image"></i>
                 Branding details
                 <i class="fa fa-angle-down close mt-2 "></i>
@@ -43,10 +43,10 @@ require("../common_files/databases/databases.php")
                 Stock update
                 <i class="fa fa-angle-down close mt-2 "></i>
             </button>
-            <ul class="collapse stock-update-btn-menu ">
+            <ul class=" stock-update-btn-menu ">
                 <li class="border-left p-2 collapse-item " access-link="create_category_design.php">create category</li>
                 <li class="border-left p-2 collapse-item " access-link="create_brands_design.php">create Brand</li>
-                <li class="border-left p-2 collapse-item " access-link="create_products_design.php">create Products</li>
+                <li class="border-left p-2 collapse-item active" access-link="create_products_design.php">create Products</li>
             </ul>
         </div>
         <div class="page">
