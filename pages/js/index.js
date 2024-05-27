@@ -146,3 +146,20 @@ window.location="http://localhost/shopwap/pages/php/buy_product.php?id="+product
         }
         });
         });
+
+
+        //preview
+        // preview
+$(document).ready(function(){
+    $(".thumb-pic").each(function(){
+        
+    $(this).click(function(){
+       
+    var src = $(this).attr("src");
+    $(".preview").attr("src", src);
+    $(".preview").addClass("animated pulse");
+    setTimeout(function(){
+    $(".preview").removeClass("animated pulse"); }, 1000);
+    });
+    });
+    });

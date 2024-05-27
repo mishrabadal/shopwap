@@ -19,12 +19,12 @@ $quantity = $_POST['quantity'];
 $select_data = "SELECT * FROM products";
 $response = $db->query($select_data);
 
-$all_files = [$_FILES['thumb'], $_FILES['front'], $_FILES['top'], $_FILES['bottom'], $_FILES['left'], $_FILES['right']];
+$all_files = [$_FILES['thumb'], $_FILES['front'], $_FILES['back'],  $_FILES['left'], $_FILES['right']];
 //point solution
 
 
 
-$files_path = ['thumb_pic','front_pic','top_pic','bottom_pic','left_pic','right_pic'];
+$files_path = ['thumb_pic','front_pic','back_pic','left_pic','right_pic'];
 $length = count($all_files);
 
 $check_dir= is_dir("../../stocks/".$data['category_name']."/".$brands."/".$product_title);
@@ -90,8 +90,7 @@ price FLOAT (20),
 quantity INT(10),
 thumb_pic VARCHAR(100),
 front_pic VARCHAR(100),
-top_pic VARCHAR(100), 
-bottom_pic VARCHAR(100),
+back_pic VARCHAR(100), 
 left_pic VARCHAR(100),
 right_pic VARCHAR(100),
 PRIMARY KEY(id)

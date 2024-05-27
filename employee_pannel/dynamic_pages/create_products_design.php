@@ -53,8 +53,8 @@ echo '
 <div class="row pic p-3">
     <div class="col-md-2"><img src="images/thumb.PNG" alt=""><input type="file" name="thumb"></div>
     <div class="col-md-2"><img src="images/front.PNG" alt=""><input type="file" name="front"></div>
-    <div class="col-md-2"><img src="images/top.PNG" alt=""><input type="file"  name="top"></div>
-    <div class="col-md-2"><img src="images/bottom.PNG" alt=""><input type="file"  name="bottom"></div>
+    <div class="col-md-2"><img src="images/back.PNG" alt=""><input type="file"  name="back"></div>
+
     <div class="col-md-2"><img src="images/left.PNG" alt=""><input type="file"  name="left"></div>
     <div class="col-md-2"><img src="images/right.PNG" alt=""><input type="file"  name="right"></div>
 </div>

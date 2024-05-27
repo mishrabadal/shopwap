@@ -21,6 +21,15 @@ $description = "";
 $price = "";
 $brand = "";
 $category=""; 
+
+$stocks = "";
+$front_pic = "";
+$back_pic = "";
+$left_pic = "";
+$right_pic ="";
+
+
+
 if($response)
 {
 $data = $response->fetch_assoc();
@@ -29,6 +38,14 @@ $description = $data['description'];
 $price = $data['price'];
 $brand = $data['brands'];
 $category = $data['category_name'];
+$stocks = $data['quantity'];
+$front_pic = $data['front_pic'];
+$back_pic = $data['back_pic'];
+$left_pic = $data['left_pic']; 
+$right_pic = $data['right_pic'];
+
+
+
 }
 
 // activate cart button
@@ -87,17 +104,18 @@ include_once("../../assest/nav.php");
 >
 <a href="#" class="text-capitalize"><?php echo $title; ?></a>
 <div class="row mt-3">
-<div class="col-md-6 bg-white border d-flex">
-<div class="w-25 pt-3 mr-3">
-<img width="100%" height="100" class="border mb-3">
-<img width="100%" height="100" class="border mb-3">
-<img width="100%" height="100" class="border mb-3">
-<img width="100%" height="100" class="border mb-3">
+<div class="col-md-6 bg-white border">
+<img src="<?php echo "../../".$front_pic;?>" width="300" class="mb-3 preview">
+
+<br>
+<img src="<?php echo "../../".$back_pic;?>" width="80" class="border shadow-sm thumb-pic">
+<img src="<?php echo "../../".$left_pic;?>" width="80" class="border shadow-sm thumb-pic">
+<img src="<?php echo "../../".$right_pic;?>" width="80" class=" border shadow-sm thumb-pic">
+
+
+
 </div>
-<div class="w-75 border" style="height: 480px">
-</div>
-</div>
-<div class="col-md-6 bg-white">
+<div class="col-md-6 bg-white py-4" style="border-left:5px solid #F8E9FA">
     
 <h4 class="p-0 m-0 text-capitalize mt-2"><?php echo $title; ?></h4>
 <p class="p-0 m-0"><?php echo $brand?></p>
