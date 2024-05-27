@@ -6,7 +6,7 @@ $response = $db->query($get_product);
 if($response)
 {
 while($data = $response->fetch_assoc()){
-echo "<p class='mx-4 search-tag'>".$data['title']."</p>";
+echo "<p class='mx-4 search-tag p-2' product-id='".$data['id']."'>".$data['title']."</p>";
 }
 }
 

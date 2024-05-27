@@ -172,7 +172,8 @@ $(document).ready(function(){
     var keyword = $(this).val();
     $.ajax({
     type: "POST",
-    url: "pages/php/live_search.php",
+   // url: "pages/php/live_search.php",
+   url: "http://localhost/shopwap/pages/php/live_search.php",
     data: {
     keyword: keyword
     },
@@ -180,17 +181,52 @@ $(document).ready(function(){
         $(".search-hint").html(response);
         $(".search-tag").on("mouseover", function(){
             $(this).css({
-            backgroundColor: 'red', color: 'white',
+            backgroundColor: 'red', 
+            color: 'white',
+            cursor:'pointer'
             });
             });
             $(".search-tag").on("mouseout", function(){ $(this).css({
             backgroundColor: 'inherit', color: 'inherit'
             });
             });
-
-
-        
+            //write in search box text
+            $(".search-tag").each(function(){
+                $(this).click(function(){
+                var id = $(this).attr("product-id");
+                $(".search").val($(this).html().trim());
+                $(".search-hint").html("");
+                window.location="http://localhost/shopwap/pages/php/buy_product.php?id="+id;
+                
+                });
+                }); 
      } 
     });
     });
     });
+
+
+    //search enter and search box
+    $(document).ready(function(){
+        $(".search").on("keypress", function(e){
+        if(e.keyCode == 13 && $(this).val() != "")
+        {
+        var keyword = $(".search").val().trim();
+        window.location = "http://localhost/shopwap/pages/php/search_result.php?search="+keyword;
+        }
+        });
+        });
+
+
+        $(document).ready(function(){
+            $(".search-icon").on("click", function(e){
+            if($(".search").val() != "")
+            {
+            var keyword = $(".search").val().trim();
+            window.location = "http://localhost/shopwap/pages/php/search_result.php?search="+keyword;
+            }
+            else{
+                alert("please write something in search box");
+            }
+            });
+            });
