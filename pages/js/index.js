@@ -163,3 +163,34 @@ $(document).ready(function(){
     });
     });
     });
+
+
+
+    // ajax live search
+$(document).ready(function(){
+    $(".search").on("input", function(){
+    var keyword = $(this).val();
+    $.ajax({
+    type: "POST",
+    url: "pages/php/live_search.php",
+    data: {
+    keyword: keyword
+    },
+    success: function(response) {
+        $(".search-hint").html(response);
+        $(".search-tag").on("mouseover", function(){
+            $(this).css({
+            backgroundColor: 'red', color: 'white',
+            });
+            });
+            $(".search-tag").on("mouseout", function(){ $(this).css({
+            backgroundColor: 'inherit', color: 'inherit'
+            });
+            });
+
+
+        
+     } 
+    });
+    });
+    });

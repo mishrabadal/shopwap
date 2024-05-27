@@ -96,7 +96,11 @@ echo $cart_count;
 
 ?></a>
 </button>
-<button class="btn border"><i class="fa fa-search"></i></button>
+<button class="btn border d-flex align-items-center " >
+    <input type="search" class="form-control mr-2 search " style="width:300px;" placeholder="search">
+    <i class="fa fa-search" style=""></i>
+
+</button>
 <button class="btn border dropdown">
 <i class="fa fa-user" data-toggle="dropdown"></i>
 <div class="dropdown-menu">
@@ -106,7 +110,11 @@ echo $menu;
 </div>
 </button>
 
+<div class="position-absolute bg-white search-hint" style="width:100%; z-index:5000; top: 60px; border:2px solid red" >
 
+
+
+</div>
 <!-- point -->
 
 </div>
