@@ -9,7 +9,7 @@ echo '
      <form class="create-products-form" >
 <div class="row">
     <div class="col-md-6 ">
-        <input type="text" class="form-control" name="title" placeholder="NOKIA 220" value="shirt">
+        <input type="text" class="form-control" name="title" placeholder="NOKIA 220" >
     </div>
     <div class="col-md-3"></div>
     <div class="col-md-3">
@@ -41,12 +41,12 @@ echo '
 <div class="row">
     <div class="col-md-4">
         <span class="d-block">PRICE</span>
-        <input type="text" class="form-control placeholder="price" name="price" value="500" >
+        <input type="text" class="form-control placeholder="price" name="price"  >
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <span class="d-block">QUANTITY</span>
-        <input type="text" class="form-control placeholder="1200" name="quantity" value="5" >
+        <input type="text" class="form-control placeholder="1200" name="quantity"  >
     </div>
 </div>
 

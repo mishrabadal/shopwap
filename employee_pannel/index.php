@@ -1,6 +1,9 @@
 <?php
 require("../common_files/databases/databases.php")
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,8 +28,11 @@ require("../common_files/databases/databases.php")
 
 <body>
     <div class="container-fluid">
-        <div class="sidebar">
-            <button class="btn  w-100 text-left collapse-item w-100 " access-link="branding_design.php">
+  
+        <div class="sidebar " id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <button class="openbtn" onclick="openNav()">☰</button>
+            <button class="btn  w-100 text-left collapse-item w-100 active" access-link="branding_design.php">
                 <i class="fa fa-image"></i>
                 Branding details
                 <i class="fa fa-angle-down close mt-2 "></i>
@@ -43,14 +49,14 @@ require("../common_files/databases/databases.php")
                 Stock update
                 <i class="fa fa-angle-down close mt-2 "></i>
             </button>
-            <ul class=" stock-update-btn-menu ">
+            <ul class=" stock-update-btn-menu collapse ">
                 <li class="border-left p-2 collapse-item " access-link="create_category_design.php">create category</li>
                 <li class="border-left p-2 collapse-item " access-link="create_brands_design.php">create Brand</li>
-                <li class="border-left p-2 collapse-item active" access-link="create_products_design.php">create Products</li>
+                <li class="border-left p-2 collapse-item " access-link="create_products_design.php">create Products</li>
             </ul>
         </div>
-        <div class="page">
-
+        <div class="page" id="main">
+         
         </div>
         <!-- points sol-->
 
@@ -66,7 +72,15 @@ require("../common_files/databases/databases.php")
 
 
 <script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "300px";
+  document.getElementById("main").style.marginLeft = "300px";
+}
 
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
 </script>
 </body>
 

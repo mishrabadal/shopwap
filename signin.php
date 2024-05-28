@@ -38,13 +38,13 @@ include_once("assest/nav.php");
 <div class="form-group">
 <label for="email">email<sup class="text-danger">*</sup></label>
 <input type="email" name="email" id="email" placeholder="
-a@gmail.com" value="badal@gmail.com" required="required" class="form-control bg-light email">
+a@gmail.com" value="" required="required" class="form-control bg-light email">
 </div>
 
 
 <div class="form-group">
 <label for="password">Password<sup class="text-danger">*</sup></label>
-<input type="password" value="badal@123" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
+<input type="password" value="" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
 </div>
 
 <div class="form-group">

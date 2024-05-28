@@ -37,26 +37,26 @@ include_once("assest/nav.php");
 <div class="form-group">
 <label for="firstname">Firstname<sup class="text-danger">*</sup></label>
 <input type="text" name="firstname" id="firstname" placeholder="
-Mr raj" required="required" class="form-control bg-light" value="badal">
+ raj" required="required" class="form-control bg-light" value="">
 </div>
 <div class="form-group">
 <label for="lastname">lastname<sup class="text-danger">*</sup></label>
 <input type="text" name="lastname" id="lastname" placeholder="
-Mr raj" required="required" class="form-control bg-light"  value="kumar">
+sharma" required="required" class="form-control bg-light"  value="">
 </div>
 <div class="form-group">
 <label for="email">email<sup class="text-danger">*</sup></label>
 <input type="email" name="email" id="email" placeholder="
-a@gmail.com" required="required" class="form-control bg-light email"  value="badal@gmail.com">
+a@gmail.com" required="required" class="form-control bg-light email"  value="">
 </div>
 
  <div class="form-group">
 <label for="Mobile">Mobile<sup class="text-danger">*</sup></label>
- <input  value="9608519031" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light mobile">
+ <input  value="" type="number" name="mobile" id="Mobile" placeholder="****999" required="required" class="form-control bg-light mobile">
 </div>
 <div class="form-group">
 <label for="password">Password<sup class="text-danger">*</sup></label>
-<input  value="badal@123" type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
+<input  value="" type="password" name="password" id="password" placeholder="*******" required="required" class="form-control bg-light">
 </div>
 
 
@@ -65,7 +65,7 @@ a@gmail.com" required="required" class="form-control bg-light email"  value="bad
 <label for="address">address<sup class="text-danger">*</sup></label>
 <textarea   type="text" name="address"  placeholder="address" required="required" class="form-control bg-light">
 
-Lal Qila, Chandni Chowk, New Delhi, Delhi, 110006
+
 </textarea>
 </div>
 <div class="form-group">

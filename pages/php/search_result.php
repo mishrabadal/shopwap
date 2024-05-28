@@ -1,16 +1,11 @@
-<?php
-
-
-
-?>
 
 <?php
 require_once("../../common_files/databases/databases.php"); 
-if(empty($_COOKIE['_au_']))
-{
-header("Location:../../signin.php");
-exit;
-}
+// if(empty($_COOKIE['_au_']))
+// {
+// header("Location:../../signin.php");
+// exit;
+// }
 $keyword = $_GET['search'];
 
 ?>

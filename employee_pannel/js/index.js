@@ -122,12 +122,13 @@ xhr: function(){
 success:function(response){
     if(response.trim() =="success")
         {
+            alert("product successfully uploaded");
        $(".create-products-progress").addClass("d-none");
         $(".create-products-progress.progress-bar").css({width:'0%'});
         $(".create-products-form").trigger('reset');
         }
         else{
-        document.write(response);
+        alert(response);
         }
 }
 

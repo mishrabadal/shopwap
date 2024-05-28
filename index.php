@@ -18,46 +18,15 @@ require_once("./common_files/databases/databases.php");
     <script src="common_files/js/bootstrap.bundle.min.js"></script>
     <script src="common_files/js/popper.min.js"></script>
     <script src="pages/js/index.js"></script>
-    <!-- <link rel="stylesheet" href="css/index.css"> -->
+ <link rel="stylesheet" href="pages/css/index.css"> 
     <!-- <script src="js/index.js"></script> -->
 
     <style>
-        .carousel-caption {
-            line-height: 80px;
-        }
 
-
-        @media (max-width:768px) {
-            #top-slider h1 {
-                margin-top: 20%;
-                font-size: 180% !important;
-            }
-
-            #top-slider h4 {
-                font-size: 120% !important;
-            }
-            #top-slider button a {
-                font-size: 15px !important;
-            }
-        }
-
-        @media (max-width:576px) {
-         
-
-          
-
-            #category-showcase img{
-                width: 80%;
-                /* border:1px solid red */
-                border-radius:12px ;
-                margin-left: 10%;
-                margin-right: 10%;
-            }
-        }
     </style>
 </head>
 
-<body class="bg-white">
+<body >
 
     <?php
     include_once("assest/nav.php");
@@ -196,7 +165,7 @@ require_once("./common_files/databases/databases.php");
 
     <!-- end category showcase -->
 
-    <div class="container-fluid">
+    <div class="container-fluid product-section">
          <h4 class="my-4 text-center">PRODUCTS FOR YOU</h4>
 <div class="row">
 <?php
@@ -206,7 +175,7 @@ if($response)
 {
 while($data = $response->fetch_assoc())
 {
-echo "<div class='col-md-3 py-5' align='center'>";
+echo "<div class='col-md-3 py-5 thumb-box' align='center'>";
 echo "<img src='".$data['thumb_pic']."' width='250' height='316'><br>";
 echo "<span class='text-uppercase font-weight-bold'>".$data['brands']." </span><br>";
 echo "<i class='fa fa-star text-warning'></i>"; echo "<i class='fa fa-star text-warning'></i>";
@@ -216,13 +185,15 @@ echo "<i class='fa fa-star-o text-warning'></i>";
 echo "<br><span>".$data['title']."</span>";
 echo "<br><span><i class='fa fa-rupee'></i> ".$data['price']."</span>";
  echo "<br>
- <button class='btn btn-danger mt-3 cart-btn' product-id='".$data['id']."' product-title='".$data['title']."' product-price='".$data['price']."' product-brand='".$data['brands']."' product-pic='".$data['thumb_pic']."'><i class='fa fa-shopping-cart ' ></i> ADD TO CART</button> 
- <button class='btn btn-primary mt-3 buy-btn' product-id='".$data['id']."'><i class='fa fa-shopping-bag'></i> BUY NOW</button>"; 
+ <button class='btn btn-danger  cart-btn' product-id='".$data['id']."' product-title='".$data['title']."' product-price='".$data['price']."' product-brand='".$data['brands']."' product-pic='".$data['thumb_pic']."'><i class='fa fa-shopping-cart ' ></i> ADD TO CART</button> 
+ <button class='btn btn-primary  buy-btn' product-id='".$data['id']."'><i class='fa fa-shopping-bag'></i> BUY NOW</button>"; 
  echo "</div>";
 
 }
 }
 ?>
+</div>
+    </div>
 
 
 

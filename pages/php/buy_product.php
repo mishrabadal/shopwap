@@ -23,6 +23,7 @@ $brand = "";
 $category=""; 
 
 $stocks = "";
+$thumb_pic = "";
 $front_pic = "";
 $back_pic = "";
 $left_pic = "";
@@ -39,6 +40,7 @@ $price = $data['price'];
 $brand = $data['brands'];
 $category = $data['category_name'];
 $stocks = $data['quantity'];
+$thumb_pic = $data['thumb_pic'];
 $front_pic = $data['front_pic'];
 $back_pic = $data['back_pic'];
 $left_pic = $data['left_pic']; 
@@ -105,9 +107,10 @@ include_once("../../assest/nav.php");
 <a href="#" class="text-capitalize"><?php echo $title; ?></a>
 <div class="row mt-3">
 <div class="col-md-6 bg-white border">
-<img src="<?php echo "../../".$front_pic;?>" width="300" class="mb-3 preview">
+<img src="<?php echo "../../".$thumb_pic;?>" width="300" class="mb-3 preview">
 
 <br>
+<img src="<?php echo "../../".$front_pic;?>" width="80" class="border shadow-sm thumb-pic">
 <img src="<?php echo "../../".$back_pic;?>" width="80" class="border shadow-sm thumb-pic">
 <img src="<?php echo "../../".$left_pic;?>" width="80" class="border shadow-sm thumb-pic">
 <img src="<?php echo "../../".$right_pic;?>" width="80" class=" border shadow-sm thumb-pic">

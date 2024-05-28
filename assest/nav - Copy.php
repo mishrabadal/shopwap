@@ -13,9 +13,9 @@ $branding_result = $branding_response->fetch_assoc();
 $menu="";
 if(empty($_COOKIE['_au_']))
 {
-$menu = '<a href="http://localhost/shopwap/signup.php" class="dropdown-item"><i class="fa fa-user"></i>
+$menu = '<a href="signup.php" class="dropdown-item"><i class="fa fa-user"></i>
 Sign up</a>
-<a href="http://localhost/shopwap/signin.php" class="dropdown-item"><i class="fa fa-sign-in"></i> Sign in</a>';
+<a href="signin.php" class="dropdown-item"><i class="fa fa-sign-in"></i> Sign in</a>';
 }
 else{
     $fullname = "";
@@ -57,15 +57,14 @@ $cart_count = '<div style="position: absolute; width: 25px;height:25px; backgrou
 
 
 
-<div class="container-fluid bg-danger shadow-sm p-0">
-<nav class="navbar navbar-expand-sm  bg-white">
+<div class="container-fluid bg-white shadow-sm">
+<nav class="container navbar navbar-expand-sm bg-white">
 
-<a href="http://localhost/shopwap/index.php" class="text-uppercase navbar-brand border shadow-sm d-flex align-items-center p-2">
+<a href="#" class="text-uppercase navbar-brand border shadow-sm d-flex align-items-center p-2">
 <?php
 $logo_string = base64_encode($branding_result['brand_logo']); $complete_src = "data:image/png;base64,".$logo_string;
 echo "<img src='".$complete_src."' width='20'>";
 echo "&nbsp";
-
 echo "<small>".$branding_result['brand_name']. "</small>";
 ?>
 </a>
@@ -74,26 +73,20 @@ echo "<small>".$branding_result['brand_name']. "</small>";
 
 <div class="collapse navbar-collapse" id="menu-box">
 <ul class="navbar-nav">
-
 <?php
 $get_menu = "SELECT category_name FROM category"; $get_menu_response = $db->query($get_menu); if($get_menu_response)
 {
-
-
-    
 while($nav = $get_menu_response->fetch_assoc())
 {
 echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$nav ['category_name']." </a></li>";
 }
 }
 ?>
-
 </ul>
 </div>
 
-<div class="btn-group  " style="border:2px solid  rhed;">
-<button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box">
-    <i class="fa fa-bars"></i></button>
+<div class="btn-group ml-auto">
+<button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box"><i class="fa fa-bars"></i></button>
 <button class="btn border">
     <a href="http://localhost/shopwap/pages/php/show_cart.php" class="cart-link" >
     <i class="fa fa-shopping-cart"></i>
@@ -103,22 +96,21 @@ echo $cart_count;
 
 ?></a>
 </button>
-<input type="search" class="form-control mr-2 search " style="width:50%" placeholder="search">
+<button class="btn border d-flex align-items-center " >
+    <input type="search" class="form-control mr-2 search " style="width:300px;" placeholder="search">
+   
+</button>
 <button class="btn btn-primary search-icon">
 <i class="fa fa-search" ></i>
 </button>
-<div class="btn border dropdown">
-<button data-toggle="dropdown" class="btn btn-primary">
-<i class="fa fa-user" ></i>
-</button>
-<div class="dropdown-menu" style="position:absolute ;left:-120px;">
-
-
+<button class="btn border dropdown">
+<i class="fa fa-user" data-toggle="dropdown"></i>
+<div class="dropdown-menu">
 <?php
- echo $menu;
+echo $menu;
 ?>
 </div>
-</div>
+</button>
 
 <div class="position-absolute bg-white search-hint" style="width:100%; z-index:5000; top: 60px; " >
 

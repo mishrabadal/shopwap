@@ -1,8 +1,23 @@
-
+<div class="container-fluid bg-white border-top" style="margin-top:100px">
+<div class="container d-flex justify-content-between">
+<div class="input-group w-50">
+<input type="email" placeholder="email@gmail.com" name="subscribe-email" class="form-control">
+<div class="input-group-append">
+<span class="input-group-text">SUBSCRIBE</span>
+</div>
+</div>
+<!-- pointgsolutin -->
+<div class="btn-group">
+<button class="btn btn-dark"> FOLLOW US  </button>
+<button class="btn border px-3"><a href="<?php echo $branding_result['facebook_url'];?>"><i class="fa fa-facebook"></i></a></button>
+<button class="btn border px-3"><a href="<?php echo $branding_result['twitter_url'];?>"><i class="fa fa-twitter"></i></a></button>
+</div>
+</div>
+</div>
 
 
 <div class="container-fluid bg-dark" >
-
+<div class="container py-3">
 <div class="row">
 <div class="col-md-3">
 <h5 class="text-light">CATEGORY</h5>
@@ -33,29 +48,5 @@ echo "<a href='#' class=' d-block py-2 text-uppercase'>".$nav ['category_name'].
 <p class="text-light">Website: <?php echo $branding_result['domain_name'];?></p>
 </div>
 </div>
-
-</div>
-
-
-<div class="container-fluid bg-dark border-top " >
-<div class="row">
-    <div class="col-md-4 p-4 ">
-    <div class="input-group">
-<input type="email" placeholder="email@gmail.com" name="subscribe-email" class="form-control">
-<div class="input-group-append">
-<span class="input-group-text">SUBSCRIBE</span>
-</div>
-</div>
-    </div>
-    <div class="col-md-5">
-        
-    </div>
-    <div class="col-md-3 p-4 ">
-    <div class="btn-group ">
-<button class="btn btn-dark"> FOLLOW US  </button>
-<button class="btn border px-3 bg-white"><a href="<?php echo $branding_result['facebook_url'];?>"><i class="fa fa-facebook "></i></a></button>
-<button class="btn border px-3 bg-white"><a href="<?php echo $branding_result['twitter_url'];?>"><i class="fa fa-twitter"></i></a></button>
-</div>
-    </div>
 </div>
 </div>
