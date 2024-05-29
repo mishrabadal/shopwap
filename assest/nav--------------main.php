@@ -43,7 +43,7 @@ if($response->num_rows != 0)
     $data = $response->fetch_assoc();
     if($data['result'] !=0){
 $cart_count = '<div style="position: absolute; width: 25px;height:25px; background-color:red;color:white; font-weight:bold; border-radius:50%; z-index: 1000;
- left: 25px; top:-10px" class="cart-notification text-center"> <span>'.$data["result"].'
+ left: 25px; top:-10px" class="cart-notification"> <span>'.$data["result"].'
 </span>
 </div>';
 
@@ -54,19 +54,11 @@ $cart_count = '<div style="position: absolute; width: 25px;height:25px; backgrou
 
 
 ?>
-<style>
-        .search-box{
-        position: absolute;
-       
-        left:0;
-        width: 100%;
-        z-index: 1000;
-        background-color: white;
-    }
-</style>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<div class="container-fluid bg-danger shadow-sm p-0">
+<nav class="navbar navbar-expand-sm  bg-white">
 
 <a href="http://localhost/shopwap/index.php" class="text-uppercase navbar-brand border shadow-sm d-flex align-items-center p-2">
 <?php
@@ -80,17 +72,10 @@ echo "<small>".$branding_result['brand_name']. "</small>";
 
 
 
+<div class="collapse navbar-collapse" id="menu-box">
+<ul class="navbar-nav">
 
-
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            
-          <?php
+<?php
 $get_menu = "SELECT category_name FROM category"; $get_menu_response = $db->query($get_menu); if($get_menu_response)
 {
 
@@ -98,51 +83,50 @@ $get_menu = "SELECT category_name FROM category"; $get_menu_response = $db->quer
     
 while($nav = $get_menu_response->fetch_assoc())
 {
-echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase cat-name'>".$nav ['category_name']." </a></li>";
+echo "<li class='nav-item'><a href='#' class='nav-link text text-uppercase'>".$nav ['category_name']." </a></li>";
 }
 }
 ?>
 
+</ul>
+</div>
 
+<div class="btn-group  " style="border:2px solid  rhed;">
+<button class="btn border navbar-toggler" data-toggle="collapse" data-target="#menu-box">
+    <i class="fa fa-bars"></i></button>
+<button class="btn border">
+    <a href="http://localhost/shopwap/pages/php/show_cart.php" class="cart-link" >
+    <i class="fa fa-shopping-cart"></i>
 
-
-           
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user">USER</i>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <?php
- echo $menu;
-?>
-                
-      
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="http://localhost/shopwap/pages/php/show_cart.php" class="cart-link"  tabindex="-1" style="position:relative" >
-                <i class="fa fa-shopping-cart"></i>
-
-                <?php
+<?php
 echo $cart_count;
 
+?></a>
+</button>
+<input type="search" class="form-control mr-2 search " style="width:50%" placeholder="search">
+<button class="btn btn-primary search-icon">
+<i class="fa fa-search" ></i>
+</button>
+<div class="btn border dropdown">
+<button data-toggle="dropdown" class="btn btn-primary">
+<i class="fa fa-user" ></i>
+</button>
+<div class="dropdown-menu" style="position:absolute ;left:-120px;">
+
+
+<?php
+ echo $menu;
 ?>
+</div>
+</div>
+
+<div class="position-absolute bg-white search-hint" style="width:100%; z-index:5000; top: 60px; " >
 
 
-              </a>
-            </li>
-          </ul>
-          <form class="  my-2 d-flex align-items-center " >
-           <div class="w-100" style="position: relative;">
-            <input class="form-control mr-sm-2 search" type="search" placeholder="Search" >
-            <div class="search-box search-hint">
-              
-            </div>
-           </div>
-          <div>
-            <button class="btn btn-outline-success my-2 my-sm-0 search-icon" type="button">Search</button>
-          </div>
-          </form>
-        </div>
-      </nav>
 
+</div>
+
+
+</div>
+</nav>
+</div>

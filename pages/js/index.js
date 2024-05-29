@@ -211,8 +211,11 @@ $(document).ready(function(){
         $(".search").on("keypress", function(e){
         if(e.keyCode == 13 && $(this).val() != "")
         {
+         e.preventDefault();  
         var keyword = $(".search").val().trim();
+       // alert(keyword);
         window.location = "http://localhost/shopwap/pages/php/search_result.php?search="+keyword;
+        //window.location="github.com/new";
         }
         });
         });
@@ -220,13 +223,26 @@ $(document).ready(function(){
 
         $(document).ready(function(){
             $(".search-icon").on("click", function(e){
+              
             if($(".search").val() != "")
             {
             var keyword = $(".search").val().trim();
+            
             window.location = "http://localhost/shopwap/pages/php/search_result.php?search="+keyword;
+           //window.location = "github.com/new";
             }
             else{
                 alert("please write something in search box");
             }
             });
+            });
+
+
+            $(document).ready(function(){
+                $(".cat-name").each(function(){
+                    $(this).click(function(){
+                        var keyword= $(this).html();
+                        window.location = "http://localhost/shopwap/pages/php/search_result.php?search="+keyword;
+                    });
+                });
             });

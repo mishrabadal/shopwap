@@ -638,7 +638,8 @@ $(document).ready(function(){
     cache: false,
     success: function(response)
     {
-    document.write(response);
+        //edit success
+    alert(response);
     }
     });
     }

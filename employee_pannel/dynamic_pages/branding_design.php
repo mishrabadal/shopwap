@@ -5,6 +5,7 @@
 
 
     <form class="branding-form">
+    <h1 text-align="center">company details</h1>
     <div class="form-group ">
 <label for="phone" class="font-weight-bold">enter brand name
 <i class="fa fa-edit branding-edit" style="cursor :pointer;"></i>

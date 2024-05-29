@@ -11,7 +11,7 @@ $get_menu = "SELECT category_name FROM category"; $get_menu_response = $db->quer
 {
 while($nav = $get_menu_response->fetch_assoc())
 {
-echo "<a href='#' class=' d-block py-2 text-uppercase'>".$nav ['category_name']." </a>";
+echo "<a href='#' class=' d-block py-2 text-uppercase cat-name'>".$nav ['category_name']." </a>";
 }
 }
 ?>

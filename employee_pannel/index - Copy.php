@@ -21,16 +21,16 @@ require("../common_files/databases/databases.php")
     <script src="../common_files/js/bootstrap.bundle.min.js"></script>
     <script src="../common_files/js/popper.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/index.js"></script>
+    <script src="js/sindex.js"></script>
 
-<style>
- 
-</style>
+
 </head>
 
 <body>
-<div class="sidebar " id="sidebar">
-<button onclick="w3_close()" class="w3-bar-item w3-large close">Close &times;</button>
+    <div class="container-fluid">
+  
+        <div class="sidebar " id="mySidebar">
+        
             <button class="btn  w-100 text-left collapse-item w-100 active" access-link="branding_design.php">
                 <i class="fa fa-image"></i>
                 Branding details
@@ -54,29 +54,10 @@ require("../common_files/databases/databases.php")
                 <li class="border-left p-2 collapse-item " access-link="create_products_design.php">create Products</li>
             </ul>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container-fluid">
- <div class="" style="background-color: cyan;">  
-    <button class="btn btn-danger" onclick="w3_open()" class="left-text" style="position:absolute;top:0;left:40px">☰</button>
-    <h1 align="center" style="display:inline-center" class="center-text">ADMIN PANNEL</h1></div>
-   <div class="row">
-   <div class="col-md-3 "></div>
-    <div class="col-md-9">
-    <div class="page">
-
-</div>
-    </div>
-   </div>
+        <div class="page" id="main">
+         
+        </div>
+        <!-- points sol-->
 
 
     </div>
@@ -87,14 +68,9 @@ require("../common_files/databases/databases.php")
 
 </body>
 
-<script>
-function w3_open() {
-  document.getElementById("sidebar").style.display = "block";
-}
 
-function w3_close() {
-  document.getElementById("sidebar").style.display = "none";
-}
-</script>
+
+
+</body>
 
 </html>

@@ -17,7 +17,7 @@ require_once("./common_files/databases/databases.php");
     <script src="common_files/js/bootstrap.bundle.min.js"></script>
     <script src="common_files/js/popper.min.js"></script>
     <link rel="stylesheet" href="css/index.css">
-   <!-- <script src="js/index.js"></script> -->
+    <script src="pages/js/index.js"></script> 
 
 
 </head>

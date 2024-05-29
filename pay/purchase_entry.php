@@ -198,10 +198,16 @@ echo '<i class="fa fa-times-circle" style="font-size: 100px; color:red"></i>';
 
 
 <h2><?php echo $message ;?></h2>
-<p>PLEASE OPEN YOUR EMAIL MORE INFORMATION</p>
+<p>PLEASE OPEN YOUR EMAIL FOR MORE INFORMATION</p>
+<p class="btn btn-success">YOUR ORDER SUCCESSFULLY PLACED</p>
+<br>
 <button class="btn btn-danger py-2 px-3">
     <a href="http://localhost/shopwap/index.php" class="text-decoration-none text-light">SHOP MORE</a>
+  
 </button>
+<br>
+<br>
+<p class="pay-id btn btn-dark">your payment id is : </p>
 </center>
 </div>
 
@@ -211,5 +217,9 @@ echo '<i class="fa fa-times-circle" style="font-size: 100px; color:red"></i>';
 ?>
 
 </body>
-
+<script>
+    $(document).ready(function(){
+        $(".pay-id").html("your payment is : "+sessionStorage.getItem("p_id"));
+    });
+</script>
 </html>
